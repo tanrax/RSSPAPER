@@ -1,5 +1,7 @@
 title: RSSPaper
 theme: default
+# Options: daily, yesterday or weekly
+edition: yesterday
 feeds:
   - https://programadorwebvalencia.com/feed/
   - https://republicaweb.es/feed/
