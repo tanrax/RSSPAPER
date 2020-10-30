@@ -1,5 +1,6 @@
 title: RSSPaper
-theme: default
+# Options: light or dark
+theme: dark
 # Options: daily, yesterday or weekly
 edition: yesterday
 feeds:
