@@ -1,6 +1,6 @@
 (defproject rsspaper "0.1.0"
-  :description "rsspaper"
-  :url ""
+  :description "RSSpaper"
+  :url "https://github.com/tanrax/RSSpaper"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url  "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [;; Clojure
@@ -18,12 +18,14 @@
                  [ring-cors "0.1.13"]
                  ;; Templates
                  [selmer "1.12.12"]
-                 ;; Validations
-                 [jkkramer/verily "0.6.0"]
                  ;; Yaml
                  [clj-yaml "0.4.0"]
                  ;; JSON encoding
-                 [cheshire "5.9.0"]]
+                 [cheshire "5.9.0"]
+                 ;; Parse RSS/Atom feeds
+                 [ccxx.cx/feedparser-clj "0.6.0"]
+                 ;; Make RSS/Atom feeds
+                 [clj-rss "0.2.6"]]
   :plugins [;; DEV TOOLS
             ;;; Check idiomatic bug
             [lein-kibit "0.1.7"]
