@@ -1,0 +1,8 @@
+title: RSSPaper
+# Options: light or dark
+theme: dark
+# Options: daily, yesterday or weekly
+edition: yesterday
+feeds:
+  - https://programadorwebvalencia.com/feed/
+  - https://republicaweb.es/feed/

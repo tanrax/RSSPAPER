@@ -1,0 +1,63 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+body {
+    font-family: Raleway, arial;
+    margin: 0;
+    background: #09f;
+    height: calc(100vh - 8rem);
+    margin-top: 8rem;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6c3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+header > a {
+    margin: 1rem;
+}
+header > a > img {
+    height: 3rem;
+}
+header ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+header ul a {
+    display: block;
+    margin: 1rem;
+    padding: 1rem;
+    color: white;
+    text-decoration: initial;
+}
+header ul a:hover {
+    background-color: white;
+    color: #6c3;
+}
+main {
+    max-width: 800px;
+    margin: 3rem auto;
+}
+footer {
+    text-align: center;
+}
+
+.title-welcome {
+    text-align: center;
+    color: #6c3;
+}
+
+.logo-welcome {
+    text-align: center;
+}
+
+.logo-welcome img {
+    width: 20rem;
+    margin: 4rem auto;
+}
