@@ -32,12 +32,28 @@
     </style>
     <style media="all and (min-width: 601px)">
         body {
-            background: green;
         }
     </style>
     <!-- End CSS -->
 </head>
 <body>
-
+    <main>
+        <h1>RSSPaper</h1>
+        {% for item in data %}
+        <h2>{{ item.feed.title }}</h2>
+        <section>
+            {% for article in item.feed.entries %}
+            <article>
+                <header>
+                    <h3>{{ article.title }}</h3>
+                </header>
+                <main>
+                    {{ article.description.value|safe }}
+                </main>
+            </article>
+            {% endfor %}
+        </section>
+        {% endfor %}
+    </main>
 </body>
 </html>
