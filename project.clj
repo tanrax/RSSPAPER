@@ -14,14 +14,12 @@
                  ;; Parse RSS/Atom feeds
                  [remus "0.2.1"]
                  ;; Make RSS/Atom feeds
-                 [clj-rss "0.2.6"]]
+                 [clj-rss "0.2.7"]]
   :plugins [;; DEV TOOLS
             ;;; Check idiomatic bug
             [lein-kibit "0.1.7"]
             ;;; Check format
-            [lein-cljfmt "0.6.4"]
-            ;;; Generate documentation
-            [lein-codox "0.10.7"]]
+            [lein-cljfmt "0.6.4"]]
   ;; ALIAS
   :aliases {"check-idiomatic" ["kibit" "src"]
             "check-format"    ["cljfmt" "check"]}
