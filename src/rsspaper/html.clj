@@ -15,4 +15,7 @@
     (.mkdir (java.io.File. dir))
     ;; Make dist/index.html
     (with-open [wrtr (io/writer path)]
-      (.write wrtr (s/render-file (str "themes/" (:theme config) ".html") {:data data})))))
+      (.write wrtr (s/render-file (str "themes/" (:theme config) ".html") {
+                                                                           :title (:title config)
+                                                                           :data data
+                                                                           })))))
