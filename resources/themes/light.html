@@ -123,6 +123,9 @@
                 {% for article in item.feed.entries %}
                 <article class="feed__article article">
                     <header class="article__header">
+                        <p>
+                            <img src="{{ article.cover }}" alt="{{ article.title }}">
+                        </p>
                         <h1 class="article__title">{{ article.title }}</h1>
                         <h2 class="article__feed">{{ item.feed.title }}</h2>
                     </header>

@@ -15,7 +15,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Leiningen: cheshire:5.9.0" level="project" />
     <orderEntry type="library" name="Leiningen: clj-http:3.10.2" level="project" />
-    <orderEntry type="library" name="Leiningen: clj-rss:0.2.6" level="project" />
+    <orderEntry type="library" name="Leiningen: clj-rss:0.2.7" level="project" />
     <orderEntry type="library" name="Leiningen: clj-tuple:0.2.2" level="project" />
     <orderEntry type="library" name="Leiningen: clj-yaml:0.4.0" level="project" />
     <orderEntry type="library" name="Leiningen: clojure-complete:0.2.5" level="project" />
