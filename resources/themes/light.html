@@ -42,6 +42,10 @@
             font-family: 'Newsreader', serif;
             color: var(--color-black);
         }
+        img {
+            object-fit: cover;
+            object-position: center;
+        }
         img, video, iframe {
             width: 100%;
         }
@@ -56,6 +60,10 @@
             max-width: 62rem;
             margin: 0 auto;
             padding: 1rem;
+        }
+
+        .header {
+            margin-bottom: 2rem;
         }
 
         .title {
@@ -105,7 +113,113 @@
     </style>
     <style media="all and (min-width: 601px)">
         /* Desktop */
-        body {
+        .main {
+            display: grid;
+            grid-gap: 1rem;
+            grid-template-columns: repeat(12, 1fr);
+        }
+
+        /* First column. */
+        .feed__article:nth-child(3n-2){
+            grid-column: 9 / 13;
+        }
+
+        /* Second column */
+        .feed__article:nth-child(3n+2){
+            grid-column: 1 / 5;
+        }
+
+        /* Third column */
+        .feed__article:nth-child(3n+3) {
+            grid-column: 5 / 9;
+        }
+
+        .article__title {
+            font-size: 1.5rem;
+        }
+
+        .article__feed {
+            font-size: 1rem;
+        }
+
+        .feed__article:nth-child(1) .article__title {
+            font-size: 2rem;
+        }
+
+        .feed__article:nth-child(1) .article__feed {
+            font-size: 1rem;
+        }
+
+        .feed__article:nth-child(1) {
+            grid-column: 1 / 9;
+            grid-row: 1 / 4;
+            text-align: center;
+        }
+
+        .feed__article:nth-child(2) {
+            grid-column: 9 / 13;
+            grid-row: 1 / 2;
+
+        }
+
+        .feed__article:nth-child(3) {
+            grid-column: 9 / 13;
+            grid-row: 2 / 3;
+
+        }
+
+        .feed__article:nth-child(4) {
+            grid-column: 9 / 13;
+            grid-row: 3 / 4;
+        }
+
+        .feed__article:nth-child(2) .article__header,
+        .feed__article:nth-child(3) .article__header,
+        .feed__article:nth-child(4) .article__header
+        {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row-reverse;
+            grid-gap: 1rem;
+        }
+
+        .article__header > p {
+            margin: 0;
+        }
+
+        .feed__article:nth-child(2) .article__titles,
+        .feed__article:nth-child(3) .article__titles,
+        .feed__article:nth-child(4) .article__titles,
+        .feed__article:nth-child(2) .article__header-img,
+        .feed__article:nth-child(3) .article__header-img,
+        .feed__article:nth-child(4) .article__header-img
+        {
+            width: 50%;
+        }
+
+        .feed__article:nth-child(2) .article__title,
+        .feed__article:nth-child(3) .article__title,
+        .feed__article:nth-child(4) .article__title
+        {
+            font-size: 1.2rem;
+        }
+
+        .feed__article:nth-child(2) .article__feed,
+        .feed__article:nth-child(3) .article__feed,
+        .feed__article:nth-child(4) .article__feed
+        {
+            font-size: 1rem;
+        }
+
+
+
+        .article__main {
+            position: fixed;
+            left: -100%;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+
         }
     </style>
     <!-- End CSS -->
@@ -119,22 +233,24 @@
         </header>
         <main class="main">
             {% for item in data %}
-            <section class="feed">
                 {% for article in item.feed.entries %}
                 <article class="feed__article article">
                     <header class="article__header">
-                        <p>
+                        {% if article.cover %}
+                        <p class="article__header-img">
                             <img src="{{ article.cover }}" alt="{{ article.title }}">
                         </p>
-                        <h1 class="article__title">{{ article.title }}</h1>
-                        <h2 class="article__feed">{{ item.feed.title }}</h2>
+                        {% endif %}
+                        <div class="article__titles">
+                            <h1 class="article__title">{{ article.title }}</h1>
+                            <h2 class="article__feed">{{ item.feed.title }}</h2>
+                        </div>
                     </header>
-                    <main class="article__main">
+                    <main class="container article__main">
                         {{ article.description.value|safe }}
                     </main>
                 </article>
                 {% endfor %}
-            </section>
             {% endfor %}
         </main>
     </div>
