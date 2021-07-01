@@ -11,6 +11,8 @@
                  [clj-yaml "0.4.0"]
                  ;; JSON encoding
                  [cheshire "5.9.0"]
+                 ;; Date
+                 [clj-time "0.15.2"]
                  ;; Parse RSS/Atom feeds
                  [remus "0.2.1"]
                  ;; Make RSS/Atom feeds

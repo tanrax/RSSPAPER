@@ -35,6 +35,7 @@
         /* Global */
         :root {
             --color-black: black;
+            --color-gray: gray;
         }
         body {
             margin: 0;
@@ -142,6 +143,11 @@
             font-size: 1rem;
         }
 
+        .article__date {
+            font-size: .9rem;
+            color: var(--color-gray);
+        }
+
         .feed__article:nth-child(1) .article__title {
             font-size: 2rem;
         }
@@ -243,7 +249,7 @@
                         {% endif %}
                         <div class="article__titles">
                             <h1 class="article__title">{{ article.title }}</h1>
-                            <h2 class="article__feed">{{ item.feed.title }}</h2>
+                            <h2 class="article__feed">{{ item.feed.title }} <span class="article__date">{{ article.published-date-formatter }}</span></h2>
                         </div>
                     </header>
                     <main class="container article__main">
