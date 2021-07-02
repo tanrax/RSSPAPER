@@ -32,7 +32,8 @@
   ;; Add cover to article search first image in description
   ;; Iterate every blog
   (map (fn [article]
-         (assoc article :cover (second (re-find #"<img[^>]+src=\"([^\">]+)\"" (str  (get-in article [:description :value])))))
+         (let [url-article (second (re-find #"<img[^>]+src=\"([^\">]+)\"" (str  (get-in article [:description :value]))))]
+         (assoc article :cover (if (nil? url-article) (get-in article [:feed :image :url]) url-article)))
          ) articles))
 
 

@@ -193,6 +193,18 @@
             margin: 0;
         }
 
+        .article__header-img > img {
+            height: 12rem;
+        }
+
+        .feed__article:nth-child(1) .article__header-img > img,
+        .feed__article:nth-child(2) .article__header-img > img,
+        .feed__article:nth-child(3) .article__header-img > img,
+        .feed__article:nth-child(4) .article__header-img > img
+        {
+            height: initial;
+        }
+
         .feed__article:nth-child(2) .article__titles,
         .feed__article:nth-child(3) .article__titles,
         .feed__article:nth-child(4) .article__titles,
@@ -243,7 +255,7 @@
                 <header class="article__header">
                     {% if article.cover %}
                     <p class="article__header-img">
-                        <img src="{{ article.cover }}" alt="{{ article.title }}">
+                        <img loading="lazy" src="{{ article.cover }}" alt="{{ article.title }}">
                     </p>
                     {% endif %}
                     <div class="article__titles">
