@@ -238,25 +238,23 @@
             <hr class="separator">
         </header>
         <main class="main">
-            {% for item in data %}
-                {% for article in item.feed.entries %}
-                <article class="feed__article article">
-                    <header class="article__header">
-                        {% if article.cover %}
-                        <p class="article__header-img">
-                            <img src="{{ article.cover }}" alt="{{ article.title }}">
-                        </p>
-                        {% endif %}
-                        <div class="article__titles">
-                            <h1 class="article__title">{{ article.title }}</h1>
-                            <h2 class="article__feed">{{ item.feed.title }} <span class="article__date">{{ article.published-date-formatter }}</span></h2>
-                        </div>
-                    </header>
-                    <main class="container article__main">
-                        {{ article.description.value|safe }}
-                    </main>
-                </article>
-                {% endfor %}
+            {% for article in articles %}
+            <article class="feed__article article">
+                <header class="article__header">
+                    {% if article.cover %}
+                    <p class="article__header-img">
+                        <img src="{{ article.cover }}" alt="{{ article.title }}">
+                    </p>
+                    {% endif %}
+                    <div class="article__titles">
+                        <h1 class="article__title">{{ article.title }}</h1>
+                        <h2 class="article__feed">{{ article.feed.title }} <span class="article__date">{{ article.published-date-formatter }}</span></h2>
+                    </div>
+                </header>
+                <main class="container article__main">
+                    {{ article.description.value|safe }}
+                </main>
+            </article>
             {% endfor %}
         </main>
     </div>
