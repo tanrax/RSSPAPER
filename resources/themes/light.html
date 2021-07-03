@@ -251,22 +251,24 @@
         </header>
         <main class="main">
             {% for article in articles %}
-            <article class="feed__article article">
-                <header class="article__header">
-                    {% if article.cover %}
-                    <p class="article__header-img">
-                        <img loading="lazy" src="{{ article.cover }}" alt="{{ article.title }}">
-                    </p>
-                    {% endif %}
-                    <div class="article__titles">
-                        <h1 class="article__title">{{ article.title }}</h1>
-                        <h2 class="article__feed">{{ article.feed.title }} <span class="article__date">{{ article.published-date-formatter }}</span></h2>
-                    </div>
-                </header>
-                <main class="container article__main">
-                    {{ article.description.value|safe }}
-                </main>
-            </article>
+            <a class="feed__article article" target="_blank" href="{{ article.url }}">
+                <article>
+                    <header class="article__header">
+                        {% if article.cover %}
+                        <p class="article__header-img">
+                            <img loading="lazy" src="{{ article.cover }}" alt="{{ article.title }}">
+                        </p>
+                        {% endif %}
+                        <div class="article__titles">
+                            <h1 class="article__title">{{ article.title }}</h1>
+                            <h2 class="article__feed"><a target="_blank" href="{{ article.feed.url }}">{{ article.feed.title }}</a> <span class="article__date">{{ article.published-date-formatter }}</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        {{ article.description.value|safe }}
+                    </main>
+                </article>
+            </a>
             {% endfor %}
         </main>
     </div>
