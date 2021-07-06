@@ -17,12 +17,12 @@
 
 (defn filter-edition
   [articles]
-  (let [daily (- (c/to-long (t/now)) 86400), weekly (- (c/to-long (t/now)) 604800)]
+  (let [daily (- (c/to-long (t/now)) 86400)
+        weekly (- (c/to-long (t/now)) 604800)]
     (case (:edition config)
-      "daily" articles
-      "weekly" articles
-      :else articles
-      )))
+      "daily" (filter (fn [article] (> (:published-date article) daily)) articles)
+      "weekly" (filter (fn [article] (> (:published-date article) weekly)) articles)
+      :else articles)))
 
 
 (defn add-datetimes-formatter
@@ -58,8 +58,8 @@
          (conj feeds
                (parse-url feed-url {:insecure? true :throw-exceptions false}))
          ) [] (:feeds config))
-     filter-edition
      zip-feeds-in-articles
-     add-cover-article
      datetimes-to-unixtime
+     filter-edition
+     add-cover-article
      add-datetimes-formatter))))

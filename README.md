@@ -45,13 +45,13 @@ feeds:
 https://github.com/tanrax/RSSpaper/releases
 
 
-4) Now you can execute glosa.
+4) Now you can execute.
 
 ```sh
 java -jar rsspaper-{version}-standalone.jar
 ```
 
-Great 🎉. You already have your 🔥 own Static RSS Newspaper 🔥.
+Great 🎉. You already have your 📰 own Static RSS Newspaper 📰.
 
 That's it, now you just have to open `dist/index.html`.
 
