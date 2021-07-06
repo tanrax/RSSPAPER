@@ -1,16 +1,28 @@
 (ns rsspaper.feeds
   (:require
    [rsspaper.config :refer [config]]
+   [clj-time.core :as t]
    [clj-time.coerce :as c]
    [clj-time.format :as f]
    [remus :refer [parse-url]]))
 
 (def date-custom-formatter (f/formatter "dd MM yyyy"))
 
+
 (defn datetimes-to-unixtime
   [articles]
   (map (fn [article]
          (assoc article :published-date (c/to-long (:published-date article)))) articles))
+
+
+(defn filter-edition
+  [articles]
+  (let [daily (- (c/to-long (t/now)) 86400), weekly (- (c/to-long (t/now)) 604800)]
+    (case (:edition config)
+      "daily" articles
+      "weekly" articles
+      :else articles
+      )))
 
 
 (defn add-datetimes-formatter
@@ -46,6 +58,7 @@
          (conj feeds
                (parse-url feed-url {:insecure? true :throw-exceptions false}))
          ) [] (:feeds config))
+     filter-edition
      zip-feeds-in-articles
      add-cover-article
      datetimes-to-unixtime

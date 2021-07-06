@@ -3,5 +3,4 @@ target/
 /.lein-repl-history
 /.nrepl-port
 config.yaml
-log/logger1.log
-log/logger1.log.1
+log/logger1.log*

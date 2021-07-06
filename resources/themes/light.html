@@ -36,6 +36,7 @@
         :root {
             --color-black: black;
             --color-gray: gray;
+            --height-img: 10rem;
         }
         body {
             margin: 0;
@@ -105,12 +106,18 @@
         .article__title, .article__feed {
             font-weight: normal;
         }
+        .article__header-img > a > img {
+            height: var(--height-img);
+            object-position: center;
+            object-fit: contain;
+        }
+        .article__random-background {
+            height: var(--height-img);
+            width: 100%;
+        }
     </style>
     <style media="all and (max-width: 600px)">
         /* Mobile */
-        body {
-            background: red;
-        }
     </style>
     <style media="all and (min-width: 601px)">
         /* Desktop */
@@ -194,7 +201,7 @@
         }
 
         .article__header-img > img {
-            height: 12rem;
+            height: var(--height-img);
         }
 
         .feed__article:nth-child(1) .article__header-img > img,
@@ -239,6 +246,10 @@
             overflow-y: auto;
 
         }
+
+        .feed__article:nth-child(1) .article__random-background {
+            height: initial;
+        }
     </style>
     <!-- End CSS -->
 </head>
@@ -251,24 +262,28 @@
         </header>
         <main class="main">
             {% for article in articles %}
-            <a class="feed__article article" target="_blank" href="{{ article.url }}">
-                <article>
+                <article class="feed__article article">
                     <header class="article__header">
-                        {% if article.cover %}
                         <p class="article__header-img">
-                            <img loading="lazy" src="{{ article.cover }}" alt="{{ article.title }}">
+                            <a target="_blank" href="{{ article.link }}">
+                                {% if article.cover %}
+                                <img loading="lazy" src="{{ article.cover }}" alt="{{ article.title }}">
+                                {% else %}
+                                <canvas class="article__random-background"></canvas>
+                                {% endif %}
+                            </a>
                         </p>
-                        {% endif %}
                         <div class="article__titles">
-                            <h1 class="article__title">{{ article.title }}</h1>
-                            <h2 class="article__feed"><a target="_blank" href="{{ article.feed.url }}">{{ article.feed.title }}</a> <span class="article__date">{{ article.published-date-formatter }}</span></h2>
+                            <h1 class="article__title">
+                                <a target="_blank" href="{{ article.link }}">{{ article.title }}</a>
+                            </h1>
+                            <h2 class="article__feed"><a target="_blank" href="{{ article.feed.link }}">{{ article.feed.title }}</a> <span class="article__date">{{ article.published-date-formatter }}</span></h2>
                         </div>
                     </header>
                     <main class="container article__main">
                         {{ article.description.value|safe }}
                     </main>
                 </article>
-            </a>
             {% endfor %}
         </main>
     </div>
@@ -278,5 +293,21 @@
             Generated with <a class="footer__link" href="https://github.com/tanrax/RSSpaper">RSSpaper</a> and a lot of <span class="footer__heard">❤️</span>️
         </p>
     </footer>
+    <script defer>
+
+        function getRandomNumber(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function getRandomHexColor() {
+            return '#'.concat(Math.floor(Math.random() * 16777215).toString(16));
+        }
+
+        // Random background
+        document.querySelectorAll('.article__random-background').forEach((canvas) => {
+           canvas.style.backgroundImage = `linear-gradient(${getRandomNumber(0, 360)}deg, ${getRandomHexColor()}, ${getRandomHexColor()})`;
+        });
+
+    </script>
 </body>
 </html>
