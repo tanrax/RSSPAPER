@@ -1,4 +1,6 @@
-<h1 align="center">RSSpaper</h1>
+<h1 align="center">
+  <img alt="RSSpaper logo" src="logo.png">
+</h1>
 <p align="center">
   <a href="https://rsspaper.andros.dev/">👉 DEMO 👈</a>
 </p>
