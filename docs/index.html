@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>RSSPaper</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="theme-color" content="#3c790a">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta name="author" content="Tu nombre">
+    <meta name="generator" content="RSSpaper">
+    <meta name="keywords" content="html, css, javascript">
+    <meta name="description" content="My news">
+    <meta property="og:image" content="img/screenshot.png">
+    <meta property="og:title" content="The Rock">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@cuenta">
+    <meta name="twitter:creator" content="@cuenta">
+    <meta property="og:image:secure_url" content="https://...">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="400">
+    <meta property="og:image:height" content="300">
+    <meta property="og:image:alt" content="">
+    <!-- Normalize -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- End Normalize -->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- End Fonts -->
+    <!-- CSS -->
+    <style>
+        /* Global */
+        :root {
+            --color-black: black;
+            --color-gray: gray;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Newsreader', serif;
+            color: var(--color-black);
+        }
+        img {
+            object-fit: cover;
+            object-position: center;
+        }
+        img, video, iframe {
+            width: 100%;
+        }
+        a {
+            color: var(--color-black);
+            text-decoration: none;
+        }
+        pre {
+            overflow-x: auto;
+        }
+        .container {
+            max-width: 62rem;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .header {
+            margin-bottom: 2rem;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: normal;
+            margin-bottom: 0;
+            margin-top: 1rem;
+        }
+        .subtitle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -1rem;
+            font-weight: normal;
+            font-size: 1.5rem;
+        }
+        .subtitle__separator {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        .separator {
+            border: 0;
+            background: var(--color-black);
+            height: 1px;
+        }
+        .footer__text {
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .footer__link {
+            font-weight: bold;
+        }
+        .footer__heard {
+            display: inline-block;
+            margin-left: .3rem;
+        }
+        .article__title, .article__feed {
+            font-weight: normal;
+        }
+    </style>
+    <style media="all and (max-width: 600px)">
+        /* Mobile */
+        body {
+            background: red;
+        }
+    </style>
+    <style media="all and (min-width: 601px)">
+        /* Desktop */
+        .main {
+            display: grid;
+            grid-gap: 1rem;
+            grid-template-columns: repeat(12, 1fr);
+        }
+
+        /* First column. */
+        .feed__article:nth-child(3n-2){
+            grid-column: 9 / 13;
+        }
+
+        /* Second column */
+        .feed__article:nth-child(3n+2){
+            grid-column: 1 / 5;
+        }
+
+        /* Third column */
+        .feed__article:nth-child(3n+3) {
+            grid-column: 5 / 9;
+        }
+
+        .article__title {
+            font-size: 1.5rem;
+        }
+
+        .article__feed {
+            font-size: 1rem;
+        }
+
+        .article__date {
+            font-size: .9rem;
+            color: var(--color-gray);
+        }
+
+        .feed__article:nth-child(1) .article__title {
+            font-size: 2rem;
+        }
+
+        .feed__article:nth-child(1) .article__feed {
+            font-size: 1rem;
+        }
+
+        .feed__article:nth-child(1) {
+            grid-column: 1 / 9;
+            grid-row: 1 / 4;
+            text-align: center;
+        }
+
+        .feed__article:nth-child(2) {
+            grid-column: 9 / 13;
+            grid-row: 1 / 2;
+
+        }
+
+        .feed__article:nth-child(3) {
+            grid-column: 9 / 13;
+            grid-row: 2 / 3;
+
+        }
+
+        .feed__article:nth-child(4) {
+            grid-column: 9 / 13;
+            grid-row: 3 / 4;
+        }
+
+        .feed__article:nth-child(2) .article__header,
+        .feed__article:nth-child(3) .article__header,
+        .feed__article:nth-child(4) .article__header
+        {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row-reverse;
+            grid-gap: 1rem;
+        }
+
+        .article__header > p {
+            margin: 0;
+        }
+
+        .article__header-img > img {
+            height: 12rem;
+        }
+
+        .feed__article:nth-child(1) .article__header-img > img,
+        .feed__article:nth-child(2) .article__header-img > img,
+        .feed__article:nth-child(3) .article__header-img > img,
+        .feed__article:nth-child(4) .article__header-img > img
+        {
+            height: initial;
+        }
+
+        .feed__article:nth-child(2) .article__titles,
+        .feed__article:nth-child(3) .article__titles,
+        .feed__article:nth-child(4) .article__titles,
+        .feed__article:nth-child(2) .article__header-img,
+        .feed__article:nth-child(3) .article__header-img,
+        .feed__article:nth-child(4) .article__header-img
+        {
+            width: 50%;
+        }
+
+        .feed__article:nth-child(2) .article__title,
+        .feed__article:nth-child(3) .article__title,
+        .feed__article:nth-child(4) .article__title
+        {
+            font-size: 1.2rem;
+        }
+
+        .feed__article:nth-child(2) .article__feed,
+        .feed__article:nth-child(3) .article__feed,
+        .feed__article:nth-child(4) .article__feed
+        {
+            font-size: 1rem;
+        }
+
+
+
+        .article__main {
+            position: fixed;
+            left: -100%;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+
+        }
+    </style>
+    <!-- End CSS -->
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">RSSPaper</h1>
+            <h2 class="subtitle"><span class="subtitle__separator">~</span> <span class="subtitle__text">My static generate newspaper</span> <span class="subtitle__separator">~</span></h2>
+            <hr class="separator">
+        </header>
+        <main class="main">
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://programadorwebvalencia.com/img/blog/2021/06/comision.png" alt="Comisiones cuando vendes en Apple Store">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">Comisiones cuando vendes en Apple Store</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Programador Web Valencia</a> <span class="article__date">28 06 2021</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        <p><img src="https://programadorwebvalencia.com/img/blog/2021/06/comision.png" alt="Comisión" /></p>
+
+<p>¿Quieres vender en la Apple Store? Lo siento pero tenemos que hablar.</p>
+
+<p>Cuando decides poner a la venta algún elemento dentro de un App <strong>no todas las ganancias van a tu bolsillo</strong>. Dependiendo de ciertas variables <strong>Apple se llevará un porcentaje</strong> por cada transacción, que puede ser de un <strong>0% (ninguna), 15% o un 30%</strong>.</p>
+
+<p>Un ejemplo rápido. Acabas de publicar un App de cocina donde ofreces deliciosas recetas veganas para perros. Decides que la vas a monetizar por media de una suscripción a un precio de 10 euros al mes. Solamente quienes paguen podrán visualizar las recetas completas con todos sus pasos; el resto únicamente disfrutaran del primer paso. En este caso de cada suscripción a ti te llegará 7 euros (un 70%) mientras que Apple se quedará una comisión de 3 euros (un 30%). Y esta situación ser repetirá en cada usuario y renovación.</p>
+
+<p>Existen 2 servicios que no debes confundir, ya que su uso es completamente diferente a pesar que ambos gestionen dinero.</p>
+
+<ul>
+  <li>
+    <p><strong>Apple Pay</strong>: Implementación para hacer pagos en una web o App por medio de una tarjeta que ha sido vinculada con la cartera de Apple.</p>
+  </li>
+  <li>
+    <p><strong>In-App Purchase</strong>: Implementación para realizar pagos dentro de un App. Orientado a ofrecer contenido como: productos digitales, suscripciones y contenido premium.</p>
+  </li>
+</ul>
+
+<p>El último servicio es el que nos interesa. Dentro podremos encontrar 3 subcategorías de posibles pagos:</p>
+
+<ul>
+  <li><strong>Consumibles</strong>: como gemas en un videojuego o incrementar la visibilidad de un perfil temporalmente en un red de citas.</li>
+  <li><strong>No consumibles</strong>: características premium que son compradas en una ocasión y no expiran.</li>
+  <li><strong>Suscripciones</strong>: características premium o acceso a contenido a través de un pago recurrente. Cuando el usuario decide cancelar el siguiente pago, estas características dejan de ser accesibles transcurrido el periodo pagado.</li>
+</ul>
+
+<p>Es importante que sepas donde encaja el App en estas subcategorías porque las comisiones cambiarán.</p>
+
+<h2 id="comisiones">Comisiones</h2>
+
+<ul>
+  <li><strong>El App es gratis en tienda, no se vende nada</strong>: 0%.</li>
+  <li><strong>El App es gratis en tienda pero posee anuncios</strong>: 0%.</li>
+  <li><strong>El App es gratis en tienda pero se vende productos o servicios físicos</strong>: 0%.</li>
+  <li><strong>El App es gratis en tienda aunque puedes pagar por consumibles</strong>: 30%.</li>
+  <li><strong>El App es de pago, no se vende nada</strong>: 30%.</li>
+  <li><strong>El App es gratis en tienda aunque puedes pagar una suscripción</strong>: 30%, aunque después del primer año baja a 15%.</li>
+  <li><strong>Existe pagos o suscripciones fuera del App</strong>: 0%, sin embargo no debe existir ningún enlace o referencia al lugar donde se pueden realizar los pagos.</li>
+  <li><strong>Existen pagos o suscripciones fuera del App con posibilidad de hacerlo también dentro de un dispositivo Apple</strong>: 0% si no es en el ecosistema de Apple, dentro del App se debe pagar las comisiones anteriormente mencionadas.</li>
+</ul>
+
+<h2 id="tabla-de-precios-disponibles">Tabla de precios disponibles</h2>
+
+<p>Los precios <strong>no los eliges libremente, Apple te da una tabla</strong> de posibilidades que si o si debes seleccionar la opción que más se ajuste con tu negocio. Te aviso que las cantidades a percibir varían dependiendo del país. Puede darse el caso que marques 10 euros, pero en un lugar como la India se venda por 4 euros.</p>
+
+<p><img src="https://programadorwebvalencia.com/img/blog/2021/06/tabla-precios-apple-store.png" alt="Tabla precios In-App" /></p>
+
+<h2 id="otras-comisiones">Otras comisiones</h2>
+
+<p>No olvides que independientemente de Apple <strong>debes integrar una pasarela de pago</strong>. Alguien debe gestionar el movimiento de dinero entre la tarjeta del cliente y tu cuenta bancaria. Corre por tu cuenta. Las más populares son las siguientes.</p>
+
+<ul>
+  <li><strong>Stripe</strong>: Se lleva una comisión de 1,4 % + 0,25 € para tarjetas europeas y 2,9 % + 0,25 € para tarjetas no europeas.</li>
+  <li><strong>Paypal</strong>: Se lleva una comisión de 2,8 % + una tarifa fija dependiendo de la moneda.</li>
+</ul>
+
+<p>Sin olvidar el pago anual de <strong>Apple Developer Program</strong>, que son 100 dolares. Es el precio para que tu App esté accesible en la tienda. En caso de no pagarlo sería retirada.</p>
+
+<p>Y por último los impuestos locales de cada país. Pero esto es inabarcable de explicar en un artículo de blog.</p>
+
+<h2 id="conclusión">Conclusión</h2>
+
+<p>Para publicar un App en la Apple Store debemos tener en cuenta las siguientes comisiones.</p>
+
+<ul>
+  <li><strong>Apple Developer Program</strong>: 100 dolares anuales.</li>
+  <li><strong>In-App Purchase</strong>: Entre 0% al 30%.</li>
+  <li><strong>Pasarela de pagos</strong>: Los mencionados rondan de entre 1,4% al 2.9% + una tarifa fija.</li>
+  <li><strong>Reducción de precio</strong> en algunos países.</li>
+  <li><strong>Impuestos</strong> locales.</li>
+</ul>
+
+<p>Aún así, sigue siendo la plataforma más rentable dentro del desarrollo de Apps.</p>
+
+<h2 id="más-información">Más información</h2>
+
+<p>Todas las funciones: <a href="https://developer.apple.com/in-app-purchase/">In‑App Purchase</a></p>
+
+<p>Comisiones: <a href="https://www.apple.com/ie/ios/app-store/principles-practices/">Principales prácticas</a></p>
+
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://programadorwebvalencia.com/img/blog/2021/06/don-clojure-de-la-mancha.jpg" alt="Don Clojure de la Mancha">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">Don Clojure de la Mancha</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Programador Web Valencia</a> <span class="article__date">22 06 2021</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        <p><img src="https://programadorwebvalencia.com/img/blog/2021/06/don-clojure-de-la-mancha.jpg" alt="Don Clojure de la Mancha" /></p>
+
+<p>Próximamente será publicado el libro: <strong>Don Clojure de la Mancha.</strong> ¿Quieres ser el <strong>primero en enterarte</strong>? Tan solo debes <strong>dejar un comentario</strong>. El email que introduzcas no será visible y solo le daré uso para avisarte del momento y lugar. <strong>NO TE ESTAS SUSCRIBIENDO A UNA NEWSLETTER</strong>.</p>
+
+<p>Gracias por apoyar al <strong>software libre</strong>, la <strong>programación funcional</strong> y la comunidad hispana de <strong>Clojure</strong>.</p>
+
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://programadorwebvalencia.com/img/blog/2021/06/django-con-acento.png" alt="Django ordenar ignorando los acentos">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">Django ordenar ignorando los acentos</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Programador Web Valencia</a> <span class="article__date">19 06 2021</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        <p><img src="https://programadorwebvalencia.com/img/blog/2021/06/django-con-acento.png" alt="Django con acento" /></p>
+
+<p>En caso que intentes ordenar una consulta de la base de datos y <strong>no uses PosgreSQL</strong> como base de datos principal te vas a encontrar un pequeño problema: Cuando hay acentos no se ordena de una forma lógica. Si utilizas <strong>SQLite</strong> te lo habrás encontrado de frente. Por ejemplo, si yo tengo una tabla con nombres e intento ordenarlas con <code class="highlighter-rouge">order_by</code> pasaré de:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Zaragoza, Ávila, Murcia, Albacete...
+</code></pre></div></div>
+
+<p>al siguiente orden</p>
+
+<pre><code class="language-plain-text">Albacete, Murcia, Zaragoza, Ávila...
+</code></pre>
+
+<p>Las palabras con acento, con <em>ñ</em> u otros carácteres acabarán al final de la lista.</p>
+
+<p>Para arreglarlo he creado la siguiente solución que debes copiarlo en el archivo donde necesites realizar el orden deseado.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+
+
+<span class="k">def</span> <span class="nf">order_ignore_accents</span><span class="p">(</span><span class="n">queryset</span><span class="p">,</span> <span class="n">column</span><span class="p">):</span>
+    <span class="s">"""Order Queryset ignoring accents"""</span>
+
+    <span class="k">def</span> <span class="nf">remove_accents</span><span class="p">(</span><span class="n">raw_text</span><span class="p">):</span>
+        <span class="s">"""Removes common accent characters."""</span>
+        <span class="n">sustitutions</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">"[àáâãäå]"</span><span class="p">:</span> <span class="s">"a"</span><span class="p">,</span>
+            <span class="s">"[ÀÁÂÃÄÅ]"</span><span class="p">:</span> <span class="s">"A"</span><span class="p">,</span>
+            <span class="s">"[èéêë]"</span><span class="p">:</span> <span class="s">"e"</span><span class="p">,</span>
+            <span class="s">"[ÈÉÊË]"</span><span class="p">:</span> <span class="s">"E"</span><span class="p">,</span>
+            <span class="s">"[ìíîï]"</span><span class="p">:</span> <span class="s">"i"</span><span class="p">,</span>
+            <span class="s">"[ÌÍÎÏ]"</span><span class="p">:</span> <span class="s">"I"</span><span class="p">,</span>
+            <span class="s">"[òóôõö]"</span><span class="p">:</span> <span class="s">"o"</span><span class="p">,</span>
+            <span class="s">"[ÒÓÔÕÖ]"</span><span class="p">:</span> <span class="s">"O"</span><span class="p">,</span>
+            <span class="s">"[ùúûü]"</span><span class="p">:</span> <span class="s">"u"</span><span class="p">,</span>
+            <span class="s">"[ÙÚÛÜ]"</span><span class="p">:</span> <span class="s">"U"</span><span class="p">,</span>
+            <span class="s">"[ýÿ]"</span><span class="p">:</span> <span class="s">"y"</span><span class="p">,</span>
+            <span class="s">"[ÝŸ]"</span><span class="p">:</span> <span class="s">"Y"</span><span class="p">,</span>
+            <span class="s">"[ß]"</span><span class="p">:</span> <span class="s">"ss"</span><span class="p">,</span>
+            <span class="s">"[ñ]"</span><span class="p">:</span> <span class="s">"n"</span><span class="p">,</span>
+            <span class="s">"[Ñ]"</span><span class="p">:</span> <span class="s">"N"</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">functools</span><span class="p">.</span><span class="nb">reduce</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">text</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">sustitutions</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">text</span><span class="p">),</span>
+            <span class="n">sustitutions</span><span class="p">.</span><span class="n">keys</span><span class="p">(),</span>
+            <span class="n">raw_text</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">queryset</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_accents</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s">f"x.</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s">"</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p>Supongamos, por ejemplo, que necesitas ordenar unos pueblos o municipios. Lo que haría cualquier desarrollador es:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">towns</span> <span class="o">=</span> <span class="n">Town</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nb">all</span><span class="p">().</span><span class="n">order_by</span><span class="p">(</span><span class="s">'name'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>En su lugar, omitirás <code class="highlighter-rouge">order_by</code> y añadirás la consulta a la función <code class="highlighter-rouge">order_ignore_accents</code>. Y como segundo argumento la columna que quieres usar para ordenar. En este caso será <code class="highlighter-rouge">name</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">towns_order</span> <span class="o">=</span> <span class="n">order_ignore_accents</span><span class="p">(</span><span class="n">Town</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nb">all</span><span class="p">(),</span> <span class="s">'name'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Se ordenará como esperamos.</p>
+
+<pre><code class="language-plain-text">Albacete, Ávila, Murcia, Zaragoza...
+</code></pre>
+
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://programadorwebvalencia.com/img/blog/2021/06/twing.png" alt="Tutorial rápido de Twing para PHP">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">Tutorial rápido de Twing para PHP</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Programador Web Valencia</a> <span class="article__date">06 06 2021</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        <p><img src="https://programadorwebvalencia.com/img/blog/2021/06/twing.png" alt="Twing" class="medium" /></p>
+
+<p>Trabajar con un <strong>motor de plantillas en PHP</strong> simplifica la labor de concadenar variables en ficheros con mucho texto, como puede ser un <code class="highlighter-rouge">html</code>. Cualquier Framework que imagines incorpora un sistema similar pero podemos usarlo de manera independiente para <strong>pequeñas páginas o funcionalidades</strong>.</p>
+
+<p>Primero debemos instalar <code class="highlighter-rouge">Twig</code> en su versión más reciente en la raíz del proyecto. Esto lo podemos realizar con <code class="highlighter-rouge">composer</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>composer require <span class="s2">"twig/twig:^3.0"</span>
+</code></pre></div></div>
+
+<p>Ahora creamos una carpeta donde almacenaremos todas las plantillas.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>templates
+</code></pre></div></div>
+
+<p>Dentro creamos el archivo <code class="highlighter-rouge">contacto.txt</code> con el siguiente contenido.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+Hola {{ nombre }},
+gracias por escribirnos desde {{ email }} con el asunto "{{ asunto }}".
+¡Nos vemos!
+
+</code></pre></div></div>
+
+<p>Como es un ejemplo, vamos a crear otro archivo, llamado <code class="highlighter-rouge">contacto.html</code>,  con el contenido:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;h1&gt;</span>Hola {{ nombre }},<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>gracias por escribirnos desde {{ email }} con el asunto "{{ asunto }}".<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;</span>¡Nos vemos!<span class="nt">&lt;/p&gt;</span>
+
+</code></pre></div></div>
+
+<p>Todas las variables entre <code class="highlighter-rouge">{{ }}</code> serán sustituidas por las variables que se definan. Si no ha quedado claro en breve lo entenderás.</p>
+
+<p>En estos momentos disponemos de 2 plantillas con diferentes extensiones y formatos. No es obligatorio disponer de varias plantillas, busque aprecies que funciona de manera independiente con cualquier formato en texto plano.</p>
+
+<p>Ahora creamos un archivo PHP donde ejecutaremos el código. Podemos llamarlo, por ejemplo, <code class="highlighter-rouge">renderizar.php</code>. Añadimos:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Cargamos todas las extensiones. En este caso solo disponemos de Twig</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+<span class="c1">// Indicamos en Twig el lugar donde estarán las plantillas.</span>
+<span class="nv">$loader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Twig\Loader\FilesystemLoader</span><span class="p">(</span><span class="s1">'templates'</span><span class="p">);</span>
+<span class="c1">// Cargamos las plantillas al motor de Twig</span>
+<span class="nv">$twig</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Twig\Environment</span><span class="p">(</span><span class="nv">$loader</span><span class="p">);</span>
+<span class="c1">// Definimos las variables que deseamos rellenar en las plantillas.</span>
+<span class="nv">$variablesEmail</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'nombre'</span> <span class="o">=&gt;</span> <span class="s1">'Cid'</span><span class="p">,</span>
+    <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="s1">'cid@campeador.vlc'</span><span class="p">,</span>
+    <span class="s1">'asunto'</span> <span class="o">=&gt;</span> <span class="s1">'Reconquista'</span>
+<span class="p">];</span>
+<span class="c1">// Renderizamos con la plantilla 'contacto.txt'</span>
+<span class="nv">$plantillaPlana</span> <span class="o">=</span>  <span class="nv">$twig</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">'contacto.txt'</span><span class="p">,</span> <span class="nv">$variablesEmail</span><span class="p">);</span>
+<span class="c1">// Renderizamos con la plantilla 'contacto.html'</span>
+<span class="nv">$plantillaHTML</span> <span class="o">=</span>  <span class="nv">$twig</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">'contacto.html'</span><span class="p">,</span> <span class="nv">$variablesEmail</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Si yo hiciera un <code class="highlighter-rouge">echo</code> de cada variable podemos ver el trabajo realizado.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">echo</span> <span class="nv">$plantillaPlana</span><span class="p">;</span>
+<span class="cd">/**
+Hola Cid,
+gracias por escribirnos desde cid@campeador.vlc con el asunto "Reconquista".
+¡Nos vemos!
+**/</span>
+</code></pre></div></div>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">echo</span> <span class="nv">$plantillaHTML</span><span class="p">;</span>
+<span class="cd">/**
+&lt;h1&gt;Hola Cid,&lt;/h1&gt;
+&lt;p&gt;gracias por escribirnos desde cid@campeador.vlc con el asunto "econquista".&lt;/p&gt;
+&lt;p&gt;¡Nos vemos!&lt;/p&gt;
+**/</span>
+</code></pre></div></div>
+
+<p>Y eso es todo.</p>
+
+<p>Es realmente <strong>interesante para trabajar con emails</strong>, plantillas más complejas o en la búsqueda de renderizar un PDF. Sea cual sea tu objetivo final, disponer de <strong>un motor de plantillas en PHP hará más fácil tu trabajo</strong>.</p>
+
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://programadorwebvalencia.com/img/blog/2021/06/env.png" alt="Cómo cargar variables de entorno para un Back-End">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">Cómo cargar variables de entorno para un Back-End</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Programador Web Valencia</a> <span class="article__date">31 05 2021</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        <p><img src="https://programadorwebvalencia.com/img/blog/2021/06/env.png" alt="Enviroment" class="medium" /></p>
+
+<p>Una buena práctica es <strong>no dejar secretos</strong>, como contraseñas o Tokens, dentro del código. Y ni mencionar el peligro que conlleva subirlo a un repositorio. En  gran medida se hace hincapié en esta <strong>omisión de variables por no dejar expuesto al resto del equipo un contenido sensible</strong>. Además otorga la posibilidad de jugar con <strong>diferentes credenciales durante el desarrollo</strong>, algunas pueden ser solo para hacer pruebas y otras las que serán usadas en el proyecto final.</p>
+
+<p>Muchos <strong>Frameworks ya incorporan un sistema similar</strong> al que vamos a mencionar. En breve descubrirás que la <strong>técnica es tan sencilla que puedes montártelo</strong> por tu cuenta.</p>
+
+<p>Primero crea un archivo plano con el siguiente contenido. Yo lo llamaré: <code class="highlighter-rouge">.env</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">TOKEN</span><span class="o">=</span>123456789
+<span class="nv">USER</span><span class="o">=</span>TUX
+<span class="nv">PASSWORD</span><span class="o">=</span>qwe123
+</code></pre></div></div>
+
+<p>Son 3 futuras variables de entorno con sus valores.</p>
+
+<p>A continuación ejecuta el siguiente comando en el terminal, en la misma carpeta donde se encuentra el fichero. Convertirá cada línea del fichero en una variable de entorno.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export</span> <span class="si">$(</span><span class="nb">cat</span> .env | egrep <span class="nt">-v</span> <span class="s2">"(^#.*|^</span><span class="nv">$)</span><span class="s2">"</span> | xargs<span class="si">)</span>
+</code></pre></div></div>
+
+<p>Si quieres comprobar que se ha ejecutado correctamente puedes hacer un <code class="highlighter-rouge">echo</code> con cualquier variable añadiendo el prefijo <code class="highlighter-rouge">$</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="nv">$TOKEN</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>123456789
+</code></pre></div></div>
+
+<p>Tarea terminada. Recuerda que si cierras el terminal o modificas el archivo, debes volver a ejecutar el comando.</p>
+
+<h2 id="leer-variables-de-entorno-en-php">Leer variables de entorno en PHP</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$token</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s1">'TOKEN'</span><span class="p">);</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s1">'USER'</span><span class="p">);</span>
+<span class="nv">$password</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s1">'PASSWORD'</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$token</span><span class="p">;</span>
+<span class="c1">// 123456789</span>
+</code></pre></div></div>
+
+<h2 id="leer-variables-de-entorno-en-python">Leer variables de entorno en Python</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import os
+
+token <span class="o">=</span> os.getenv<span class="o">(</span><span class="s1">'TOKEN'</span><span class="o">)</span>
+user <span class="o">=</span> os.getenv<span class="o">(</span><span class="s1">'USER'</span><span class="o">)</span>
+password <span class="o">=</span> os.getenv<span class="o">(</span><span class="s1">'PASSWORD'</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="leer-variables-de-entorno-en-clojure">Leer variables de entorno en Clojure</h2>
+
+<div class="language-clojure highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">def</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="p">(</span><span class="nf">System/getenv</span><span class="w"> </span><span class="s">"TOKEN"</span><span class="p">))</span><span class="w">
+</span><span class="p">(</span><span class="k">def</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="p">(</span><span class="nf">System/getenv</span><span class="w"> </span><span class="s">"USER"</span><span class="p">))</span><span class="w">
+</span><span class="p">(</span><span class="k">def</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="p">(</span><span class="nf">System/getenv</span><span class="w"> </span><span class="s">"PASSWORD"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Aunque también puedes usar la dependencia <code class="highlighter-rouge">environ</code>.</p>
+
+<p>Añade en <code class="highlighter-rouge">project.clj</code>.</p>
+
+<div class="language-clojure highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">environ</span><span class="w"> </span><span class="s">"0.5.0"</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Y usa con total libertad.</p>
+
+<div class="language-clojure highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="p">[</span><span class="n">environ.core</span><span class="w"> </span><span class="no">:refer</span><span class="w"> </span><span class="p">[</span><span class="n">env</span><span class="p">]])</span><span class="w">
+
+</span><span class="p">(</span><span class="k">def</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="p">(</span><span class="nf">env</span><span class="w"> </span><span class="no">:TOKEN</span><span class="p">))</span><span class="w">
+</span><span class="p">(</span><span class="k">def</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="p">(</span><span class="nf">env</span><span class="w"> </span><span class="no">:USER</span><span class="p">))</span><span class="w">
+</span><span class="p">(</span><span class="k">def</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="p">(</span><span class="nf">env</span><span class="w"> </span><span class="no">:PASSWORD</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://programadorwebvalencia.com/img/blog/2020/06/terminal.png" alt="Comandos esenciales de un Full Stack en Linux">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">Comandos esenciales de un Full Stack en Linux</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Programador Web Valencia</a> <span class="article__date">18 04 2021</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        <p><img src="https://programadorwebvalencia.com/img/blog/2020/06/terminal.png" alt="Terminal" class="medium" /></p>
+
+<p>Si quieres <strong>ser un buen desarrollador Web</strong>, o simplemente un usuario de Linux competente, <strong>defenderte con el terminal es básico</strong>. Por suerte gran parte de estos comandos pueden ser <strong>utilizados entre diversos sistemas operativos</strong> como <strong>Linux</strong>, <strong>BSD</strong>, <strong>MacOS X</strong> y <strong>Windows 10</strong> a través de Shell. Son un estándar para profundizar en tareas, trabajar rápidamente y ir directo a una funcionalidad.</p>
+
+<p>Por ello mismo dejo una lista de los <strong>comandos que creo esenciales para un Fullstack</strong>: manipular documentos, archivos, directorios, búsquedas, trabajar con logs, instalar servicios… etc. A partir de aquí ya puedes ir creciendo.</p>
+
+<h2 id="ls">ls</h2>
+
+<p>Lista carpetas y archivos de un directorio.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span>
+</code></pre></div></div>
+
+<p>Muestra más información.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-l</span>
+</code></pre></div></div>
+
+<p>Incluye los archivos ocultos.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-a</span>
+</code></pre></div></div>
+
+<h2 id="mkdir">mkdir</h2>
+
+<p>Crea carpetas.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>nueva_carpeta
+</code></pre></div></div>
+
+<p>Crea directorios recursivamente.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> carpeta1/carpeta2
+</code></pre></div></div>
+
+<h2 id="less">less</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>less archivo.txt
+</code></pre></div></div>
+
+<h2 id="touch">touch</h2>
+
+<p>Crea un archivo vacío.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">touch </span>archivo.txt
+</code></pre></div></div>
+
+<h2 id="cd">cd</h2>
+
+<p>Cambia de directorio.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>carpeta
+</code></pre></div></div>
+
+<p>Subir un nivel</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ..
+</code></pre></div></div>
+
+<h3 id="retroceder-un-directorio-subir-al-padre">Retroceder un directorio (subir al padre)</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ..
+</code></pre></div></div>
+
+<h3 id="directorio-del-usuario">Directorio del usuario</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~
+</code></pre></div></div>
+
+<h3 id="volver-al-directorio-anterior">Volver al directorio anterior</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> -
+</code></pre></div></div>
+
+<h2 id="ver-información">Ver información</h2>
+
+<p>Muestra información de un archivo o carpeta.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>file paris.jpg
+</code></pre></div></div>
+
+<h2 id="buscar">Buscar</h2>
+
+<p>Buscar archivos o carpetas.</p>
+
+<p>Un fichero</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find carpeta-donde-buscar <span class="nt">-name</span> feliz.jpg
+</code></pre></div></div>
+
+<p>Solo directorios</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find carpeta-donde-buscar <span class="nt">-type</span> d <span class="nt">-name</span> vacaciones
+</code></pre></div></div>
+
+<h2 id="pwd">pwd</h2>
+
+<p>Muestra la ruta absoluta del directorio donde nos encontramos.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">pwd</span>
+</code></pre></div></div>
+
+<h2 id="mv">mv</h2>
+
+<p>Mueve o renombra un archivo o carpeta.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mv </span>fichero_original.txt fichero_nuevo_nombre.txt
+</code></pre></div></div>
+
+<h2 id="cp">cp</h2>
+
+<p>Copia un archivo o carpeta.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp </span>texto.txt texto_copiado.txt
+</code></pre></div></div>
+
+<p>Copia una carpeta</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> <span class="nt">-r</span> carpeta carpeta_copiada
+</code></pre></div></div>
+
+<h2 id="rm">rm</h2>
+
+<p>Borra un archivo</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm </span>archivo.txt
+</code></pre></div></div>
+
+<p>Borrar carpeta</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-r</span> carpeta
+</code></pre></div></div>
+
+<h2 id="fecha">Fecha</h2>
+
+<p>Ver la fecha</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">date</span>
+</code></pre></div></div>
+
+<h3 id="convertir-tiempo-de-formato-unix-a-humano">Convertir tiempo de formato unix a humano</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">date</span> <span class="nt">-r</span> 1619018708
+</code></pre></div></div>
+
+<h2 id="nombre-de-usuario">Nombre de usuario</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">whoami</span>
+</code></pre></div></div>
+
+<h2 id="tar">tar</h2>
+
+<p>Comprime o descomprime archivos en formato Linux: tar, gzip y bz2.</p>
+
+<p><a href="https://programadorwebvalencia.com/comandos-para-comprimir-y-descomprimir/">Ver aquí</a></p>
+
+<h2 id="grep">grep</h2>
+
+<p>Imprime el contenido de un archivo filtrando por un patrón.</p>
+
+<h3 id="filtrar-el-resultado-de-un-comando">Filtrar el resultado de un comando</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> | <span class="nb">grep </span>texto
+</code></pre></div></div>
+
+<h3 id="filtrar-un-archivo">Filtrar un archivo</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>archivo.txt | <span class="nb">grep </span>texto
+</code></pre></div></div>
+
+<h2 id="sudosu">sudo/su</h2>
+
+<p>Ejecuta comando con otros permisos, como administrador u otro usuario.</p>
+
+<h2 id="chmod">chmod</h2>
+
+<p>Cambia los permisos de un archivo o carpeta.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod 744 script.sh
+</code></pre></div></div>
+
+<p>Otra forma es utilizado un trio con:</p>
+
+<h3 id="rol">Rol</h3>
+
+<ul>
+  <li>
+    <p><strong>u</strong> → usuario</p>
+  </li>
+  <li>
+    <p><strong>g</strong> → grupo</p>
+  </li>
+  <li>
+    <p><strong>o</strong> → Otros</p>
+  </li>
+  <li>
+    <p><strong>a</strong> → Todos</p>
+  </li>
+</ul>
+
+<h3 id="acción">Acción</h3>
+
+<ul>
+  <li>
+    <p><strong>+</strong> → Añadir</p>
+  </li>
+  <li>
+    <p><strong>-</strong> → Quitar</p>
+  </li>
+</ul>
+
+<h3 id="permiso">Permiso</h3>
+
+<ul>
+  <li>
+    <p><strong>r</strong> → Lectura</p>
+  </li>
+  <li>
+    <p><strong>w</strong> → Escritura</p>
+  </li>
+  <li>
+    <p><strong>x</strong> → Ejecución</p>
+  </li>
+</ul>
+
+<p>Por ejemplo, se le quita el permiso de escritura a todos</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>a-w first.txt
+</code></pre></div></div>
+
+<p>Al usuario se le da permisos de ejecución</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>u+x script.sh
+</code></pre></div></div>
+
+<h2 id="chown">chown</h2>
+
+<p>Cambia propiedad de un archivo o carpeta.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>debian:debian archivo.txt
+</code></pre></div></div>
+
+<h2 id="cat">cat</h2>
+
+<p>Concadena archivos.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>archivo1.txt archivo2.txt
+</code></pre></div></div>
+
+<h2 id="echo">echo</h2>
+
+<p>Imprime el contenido de un archivo.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo </span>archivo.txt
+</code></pre></div></div>
+
+<h2 id="man">man</h2>
+
+<p>Muestra el manual de un comando.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>man <span class="nb">ls</span>
+</code></pre></div></div>
+
+<h2 id="history">history</h2>
+
+<p>Muestra el historial de comandos.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">history</span>
+</code></pre></div></div>
+
+<h2 id="clear">clear</h2>
+
+<p>Limpia el terminal.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clear
+</code></pre></div></div>
+
+<h2 id="reboot">reboot</h2>
+
+<p>Reinicia.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>reboot
+</code></pre></div></div>
+
+<h2 id="shutdown">shutdown</h2>
+
+<p>Apaga.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>shutdown now
+</code></pre></div></div>
+
+<h2 id="tophtop">top/htop</h2>
+
+<p>Monitor de procesos.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>htop
+</code></pre></div></div>
+
+<h2 id="nano">nano</h2>
+
+<p>Editor de archivos simple.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nano archivo.txt
+</code></pre></div></div>
+
+<h2 id="vimnvimemacs">vim/nvim/emacs</h2>
+
+<p>Editor de archivos avanzado.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>emacs <span class="nt">-nw</span> archivo.txt
+</code></pre></div></div>
+
+<h2 id="curl">curl</h2>
+
+<p>Realiza peticiones HTTP.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl programadorwebvalencia.com
+</code></pre></div></div>
+
+<h2 id="tail">tail</h2>
+
+<p>Muestra el final de un archivo.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tail </span>archivo.txt
+</code></pre></div></div>
+
+<h2 id="ip">ip</h2>
+
+<p>Muestra información de tu red.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip address show eth0
+</code></pre></div></div>
+
+<h2 id="lsof">lsof</h2>
+
+<p>Muestra que servicio esta utilizando cierto puerto.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-i</span> tcp:80
+</code></pre></div></div>
+
+<h2 id="df">df</h2>
+
+<p>Muestra la información de espacio ocupado en el disco.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">df</span> <span class="nt">-h</span>
+</code></pre></div></div>
+
+<h2 id="du">du</h2>
+
+<p>Muestra el espacio que ocupa los diferentes elementos de una carpeta.</p>
+
+<h3 id="solo-un-nivel-y-en-formato-humano">Solo un nivel y en formato humano</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">du</span> <span class="nt">-d</span> 1 <span class="nt">-h</span>
+</code></pre></div></div>
+
+<h2 id="journalctl">journalctl</h2>
+
+<p>Muestra los logs en tiempo real.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>journalctl <span class="nt">-f</span>
+</code></pre></div></div>
+
+<p>Muestra los logs en tiempo real de un servicio.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>journalctl <span class="nt">-f</span> <span class="nt">-u</span> ssh
+</code></pre></div></div>
+
+<p>Muestra los logs de un servicio.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>journalctl <span class="nt">-u</span> ssh
+</code></pre></div></div>
+
+<p>Muestra las últimoas 20 líneas de un log.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>journalctl <span class="nt">-n</span> 20
+</code></pre></div></div>
+
+<p>Limpia los logs hasta alcanzar el peso que indiques.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>journalctl <span class="nt">--vacuum-size</span><span class="o">=</span>1G
+</code></pre></div></div>
+
+<p>Borra los logs con más de cierto tiempo.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>journalctl <span class="nt">--vacuum-time</span><span class="o">=</span>1years
+</code></pre></div></div>
+
+<h2 id="ejecutar-último-comando">Ejecutar último comando</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">!!</span>
+</code></pre></div></div>
+
+<p>Ejecuta último comando con sudo.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> <span class="o">!!</span>
+</code></pre></div></div>
+
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://programadorwebvalencia.com/img/blog/2017/06/logo-debian.png" alt="¿Qué hacer después de instalar Debian en un VPS o servidor?">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">¿Qué hacer después de instalar Debian en un VPS o servidor?</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Programador Web Valencia</a> <span class="article__date">12 04 2021</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        <p><img src="https://programadorwebvalencia.com/img/blog/2017/06/logo-debian.png" alt="Logo Debian" class="medium" /></p>
+
+<p>Estos son todos los pasos que realizo cuando creo un <strong>VPS</strong> o <strong>servidor en Debian</strong>. A lo largo del tiempo he ido añadiendo puntos, modificando y quitando elementos innecesarios; por lo que no lo percibáis como “La guía definitiva”. Sino más bien como unos “apuntes de apoyo”. Personalmente ejecuto todo, aunque cada proyecto es un desafío diferente.</p>
+
+<h2 id="1-actualizar-a-la-última-versión-y-estable">1. Actualizar a la última versión y estable</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+apt upgrade <span class="nt">-y</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
+apt dist-upgrade
+</code></pre></div></div>
+
+<h2 id="2-instalar-software-mínimo">2. Instalar software mínimo</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt <span class="nb">install</span> <span class="nt">-y</span> build-essential fail2ban iptables-persistent msmtp-mta python3-dev python3-pip libcurl4-openssl-dev libssl-dev htop git neovim wget curl zsh tmux <span class="o">&amp;&amp;</span> <span class="se">\</span>
+sh <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="si">)</span><span class="s2">"</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
+apt autoremove <span class="nt">-y</span>
+</code></pre></div></div>
+
+<h2 id="3-configurar-el-cortafuegos">3. Configurar el cortafuegos</h2>
+
+<p>Dejamos pasar 80 y 443 para permitir los protocolos http y https.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 80 <span class="nt">-j</span> ACCEPT <span class="o">&amp;&amp;</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 443 <span class="nt">-j</span> ACCEPT
+</code></pre></div></div>
+
+<h2 id="4-cambiar-editor-por-defecto">4. Cambiar editor por defecto</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>update-alternatives <span class="nt">--config</span> editor
+</code></pre></div></div>
+
+<h2 id="5-ajustar-la-hora">5. Ajustar la hora</h2>
+
+<p>En este ejemplo configura la hora a Madrid (España).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ln</span> <span class="nt">-fs</span> /usr/share/zoneinfo/Europe/Madrid /etc/localtime <span class="o">&amp;&amp;</span> <span class="se">\</span>
+dpkg-reconfigure <span class="nt">-f</span> noninteractive tzdata
+</code></pre></div></div>
+
+<h2 id="6-activa-las-actualizaciones-automáticas-de-seguridad-no-atendidas">6. Activa las actualizaciones automáticas de seguridad no atendidas</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt <span class="nb">install</span> <span class="nt">-y</span> unattended-upgrades apt-listchanges <span class="o">&amp;&amp;</span> <span class="se">\</span>
+<span class="nb">echo </span>unattended-upgrades unattended-upgrades/enable_auto_updates boolean <span class="nb">true</span> | debconf-set-selections <span class="o">&amp;&amp;</span> <span class="se">\</span>
+dpkg-reconfigure <span class="nt">-f</span> noninteractive unattended-upgrades
+</code></pre></div></div>
+
+<h2 id="7-crea-un-usuario">7. Crea un usuario</h2>
+
+<p>Se llamará <code class="highlighter-rouge">debian</code>, aunque puedes llamarlo como desees.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>useradd <span class="nt">--shell</span> /bin/zsh <span class="nt">-m</span> debian
+</code></pre></div></div>
+
+<p>Ahora nos metemos en el usuario.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su debian
+</code></pre></div></div>
+
+<p>Configurarmos las claves <code class="highlighter-rouge">ssh</code> y <code class="highlighter-rouge">oh-my-zsh</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen <span class="nt">-t</span> rsa
+<span class="nb">exit</span>
+</code></pre></div></div>
+
+<p>Lo añadimos al grupo de <code class="highlighter-rouge">sudo</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>usermod <span class="nt">-a</span> <span class="nt">-G</span> <span class="nb">sudo </span>debian
+</code></pre></div></div>
+
+<p>Entramos en <code class="highlighter-rouge">visudo</code> para permitirle ejecutar <code class="highlighter-rouge">sudo</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>visudo
+</code></pre></div></div>
+
+<p>Editando la siguente línea.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%sudo   <span class="nv">ALL</span><span class="o">=(</span>ALL:ALL<span class="o">)</span> NOPASSWD:ALL
+</code></pre></div></div>
+
+<p>Generamos la <code class="highlighter-rouge">keygen</code> de <code class="highlighter-rouge">ssh</code> para entrar en un futuro.</p>
+
+<p>Copiamos las autorizaciones actuales asociadas con <code class="highlighter-rouge">root</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> /root/.ssh/authorized_keys /home/debian/.ssh/ <span class="o">&amp;&amp;</span> <span class="se">\</span>
+<span class="nb">chown </span>debian:debian /home/debian/.ssh/authorized_keys
+</code></pre></div></div>
+
+<h2 id="8-medida-de-seguridad-ante-disco-lleno">8. Medida de seguridad ante disco lleno</h2>
+
+<p>Añadimos una archivo con contenido aleatorio de, por ejemplo, 1Gb. En caso que se llene el disco, podremos borrarlo para tener un margen de acción.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">dd </span><span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>balloon.txt <span class="nv">bs</span><span class="o">=</span>1MB <span class="nv">count</span><span class="o">=</span>1000
+</code></pre></div></div>
+
+<h2 id="9-limita-el-espacio-de-los-logs">9. Limita el espacio de los logs</h2>
+
+<p>Editas</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nano /etc/systemd/journald.conf
+</code></pre></div></div>
+
+<p>Descomentas (quitas la <code class="highlighter-rouge">#</code>) a la vez que modificas la siguiente línea.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">SystemMaxUse</span><span class="o">=</span>1Gb
+</code></pre></div></div>
+
+<p>Para terminar reinicia el servicio.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl restart systemd-journald
+</code></pre></div></div>
+
+<h2 id="extras">Extras</h2>
+
+<h3 id="instalar-docker">Instalar docker</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+apt <span class="nb">install</span> <span class="nt">-y</span> <span class="se">\</span>
+    apt-transport-https <span class="se">\</span>
+    ca-certificates <span class="se">\</span>
+    curl <span class="se">\</span>
+    gnupg <span class="se">\</span>
+    lsb-release <span class="o">&amp;&amp;</span> <span class="se">\</span>
+curl <span class="nt">-fsSL</span> https://download.docker.com/linux/debian/gpg | <span class="nb">sudo </span>gpg <span class="nt">--dearmor</span> <span class="nt">-o</span> /usr/share/keyrings/docker-archive-keyring.gpg <span class="o">&amp;&amp;</span> <span class="se">\</span>
+<span class="nb">echo</span> <span class="se">\</span>
+  <span class="s2">"deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian </span><span class="se">\</span><span class="s2">
+  </span><span class="si">$(</span>lsb_release <span class="nt">-cs</span><span class="si">)</span><span class="s2"> stable"</span> | <span class="nb">tee</span> /etc/apt/sources.list.d/docker.list <span class="o">&gt;</span> /dev/null <span class="o">&amp;&amp;</span> <span class="se">\</span>
+apt update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+apt <span class="nt">-y</span> <span class="nb">install </span>docker-ce docker-ce-cli containerd.io docker-compose
+</code></pre></div></div>
+
+<h3 id="activar-swap">Activar Swap</h3>
+
+<p>Habilitamos un espacio reservado en el disco en caso de que la <code class="highlighter-rouge">RAM</code> se llene.</p>
+
+<p>Instalamos <code class="highlighter-rouge">zram</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>zram-tools
+</code></pre></div></div>
+
+<p>Editamos su configuración.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /etc/default/zramswap
+</code></pre></div></div>
+
+<p>Le marcamos que su capacidad sea la mitad de la <code class="highlighter-rouge">RAM</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">PERCENTAGE</span><span class="o">=</span>50
+<span class="nv">ALLOCATION</span><span class="o">=</span>4096 <span class="c">#4Mb</span>
+<span class="nv">ALLOCATION</span><span class="o">=</span>8192 <span class="c">#8Mb</span>
+</code></pre></div></div>
+
+<h3 id="instalar-snap">Instalar snap</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>snapd
+</code></pre></div></div>
+
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://programadorwebvalencia.com/img/blog/2021/04/comprimir.png" alt="Comandos para comprimir y descomprimir">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">Comandos para comprimir y descomprimir</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Programador Web Valencia</a> <span class="article__date">11 04 2021</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        <p><img src="https://programadorwebvalencia.com/img/blog/2021/04/comprimir.png" alt="Comprimir" class="medium" /></p>
+
+<p>Dentro de Linux y MacOS disponemos de una herramientas preinstalada que es fantásticas para comprimir y descomprimir cualquier tipo de archivo: fotos, vídeos, texto, carpetas… Con solo <code class="highlighter-rouge">tar</code> ya podremos realizar las tareas básicas.</p>
+
+<p>Conceptos importantes.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">tar</code>: Tarro o contenedor. Sirve para agrupar un conjuntos de archivos, no comprime.</li>
+  <li><code class="highlighter-rouge">gzip</code>: Algoritmo de compresión malo pero rápido. Equivalente a un <code class="highlighter-rouge">zip</code>.</li>
+  <li><code class="highlighter-rouge">bz2</code>: Algoritmo de compresión bueno pero lento. Equivalente a un <code class="highlighter-rouge">rar</code>.</li>
+</ul>
+
+<h2 id="comprimir">Comprimir</h2>
+
+<h3 id="tar">tar</h3>
+
+<p>Ejemplo de como crear un grupo o archivador usando <code class="highlighter-rouge">tar</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-cvf</span> nombre.tar carpetas-o-archivos
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">c</code> —&gt; Crea un archivador (<code class="highlighter-rouge">tar</code>).</p>
+
+<p><code class="highlighter-rouge">v</code> —&gt; Muestra el progreso.</p>
+
+<p><code class="highlighter-rouge">f</code> —&gt; Indicamos que vamos a especificar el nombre final.</p>
+
+<h3 id="gzip">gzip</h3>
+
+<p>Ejemplo de como comprimir creado un <code class="highlighter-rouge">zip</code> equivalente en Linux.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-czvf</span> futuro-comprimido.tar.gz carpetas-o-archivos-a-comprimir
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">c</code> —&gt; Crea un archivador (tar).</p>
+
+<p><code class="highlighter-rouge">z</code> —&gt; Comprime usando gzip (zip)</p>
+
+<p><code class="highlighter-rouge">v</code> —&gt; Muestra el progreso.</p>
+
+<p><code class="highlighter-rouge">f</code> —&gt; Indicamos que vamos a especificar el nombre final.</p>
+
+<h3 id="bz2">bz2</h3>
+
+<p>Ejemplo de como comprimir creado un <code class="highlighter-rouge">rar</code> equivalente en Linux. (sustituye <code class="highlighter-rouge">z</code> por <code class="highlighter-rouge">j</code>)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-cjvf</span> futuro-comprimido.tar.bz2 carpetas-o-archivos-a-comprimir
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">c</code> —&gt; Crea un archivador (<code class="highlighter-rouge">tar</code>).</p>
+
+<p><code class="highlighter-rouge">j</code> —&gt; Comprime usando bzip2 (equivalente a <code class="highlighter-rouge">rar</code>)</p>
+
+<p><code class="highlighter-rouge">v</code> —&gt; Muestra el progreso.</p>
+
+<p><code class="highlighter-rouge">f</code> —&gt; Indicamos que usaremos un archivo.</p>
+
+<h2 id="descomprimir">Descomprimir</h2>
+
+<p>Ejemplo de como descomprimir cualquier formato: <code class="highlighter-rouge">tar</code>, <code class="highlighter-rouge">tar.gz</code> o <code class="highlighter-rouge">tar.bz2</code>.  (sustituye <code class="highlighter-rouge">c</code> por <code class="highlighter-rouge">x</code>)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-xvf</span> comprimido.tar.gz
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">x</code> —&gt; Extrae.</p>
+
+<p><code class="highlighter-rouge">v</code> —&gt; Muestra el progreso.</p>
+
+<p><code class="highlighter-rouge">f</code> —&gt; Indicamos que usaremos un archivo.</p>
+
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://programadorwebvalencia.com/img/blog/2021/04/scroll.png" alt="Cómo suavizar un scroll">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">Cómo suavizar un scroll</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Programador Web Valencia</a> <span class="article__date">01 04 2021</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        <p><img src="https://programadorwebvalencia.com/img/blog/2021/04/scroll.png" alt="cookie" class="medium" /></p>
+
+<p>Si queremos que al pulsar en un hipervínculo, o ancla, <strong>se desplace de manera suave</strong> y lenta, en lugar ser instantáneo, podemos optar por usar algunos de siguientes <strong>3 trucos</strong>. Pasando por <strong>CSS</strong>, <strong>JavaScript</strong> o <strong>JQuery</strong>. El artículo no cubre la forma de realizar un ancla, aunque puedes aprender en mi <a href="/cursos/html/hipervínculos/">curso gratuito de HTML</a>.</p>
+
+<h2 id="demo">DEMO</h2>
+
+<iframe frameborder="0" width="100%" height="300" src="https://programadorwebvalencia.com/demos/blog/como-suavizar-un-scroll/"></iframe>
+
+<h2 id="versión-solo-con-css">Versión solo con CSS</h2>
+
+<p>Al añadir el siguiente CSS conseguirás que los movimientos de tus anclas sean suaves en lugar de instantáneos.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">body</span> <span class="p">{</span>
+	<span class="py">scroll-behavior</span><span class="p">:</span> <span class="n">smooth</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>En el momento que se escribió este artículo no era compatible con Safari.</p>
+
+<h2 id="versión-solo-con-javascript-vainilla">Versión solo con JavaScript Vainilla</h2>
+
+<p>En caso contrario de que no funcione como esperas podrás usar un poco de JavaScript para conseguir el mismo efecto.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+	<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">DOMContentLoaded</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>	
+
+	    	<span class="c1">//===</span>
+		<span class="c1">// SCROLL SMOOTH</span>
+		<span class="c1">//===</span>
+		<span class="c1">// Variables</span>
+		<span class="kd">const</span> <span class="nx">links</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">a[href *= "#"]:not([href = "#"])</span><span class="dl">'</span><span class="p">);</span>
+
+		<span class="cm">/**
+		 * Event scroll
+		 */</span>
+		<span class="kd">function</span> <span class="nx">clickHandler</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+		  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+		  <span class="kd">const</span> <span class="nx">href</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">href</span><span class="dl">"</span><span class="p">);</span>
+		  <span class="kd">const</span> <span class="nx">offsetTop</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="nx">href</span><span class="p">).</span><span class="nx">offsetTop</span><span class="p">;</span>
+
+		  <span class="nx">scroll</span><span class="p">({</span>
+		    <span class="na">top</span><span class="p">:</span> <span class="nx">offsetTop</span><span class="p">,</span>
+		    <span class="na">behavior</span><span class="p">:</span> <span class="dl">"</span><span class="s2">smooth</span><span class="dl">"</span>
+		  <span class="p">});</span>
+		<span class="p">}</span>
+
+		<span class="c1">// Add event all links</span>
+		<span class="nx">links</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">link</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">link</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="nx">clickHandler</span><span class="p">));</span>
+	<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<h2 id="versión-solo-con-jquery">Versión solo con JQuery</h2>
+
+<p>Y por último, en caso de que aún así no funcione; puedes recurrir a un clásico que nunca te va a fallar y ha sido utilizado durante muchos años.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+	<span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	    <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">a[href *= "#"]:not([href = "#"])</span><span class="dl">'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^</span><span class="se">\/</span><span class="sr">/</span><span class="p">,</span> <span class="dl">''</span><span class="p">)</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">pathname</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^</span><span class="se">\/</span><span class="sr">/</span><span class="p">,</span> <span class="dl">''</span><span class="p">)</span> <span class="o">||</span> <span class="nx">location</span><span class="p">.</span><span class="nx">hostname</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">hostname</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">let</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+		    <span class="nx">target</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">length</span> <span class="p">?</span> <span class="nx">target</span> <span class="p">:</span> <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">[name = </span><span class="dl">'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">hash</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">]</span><span class="dl">'</span><span class="p">);</span>
+		    <span class="k">if</span> <span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">html, body</span><span class="dl">'</span><span class="p">).</span><span class="nx">animate</span><span class="p">({</span>
+			    <span class="na">scrollTop</span><span class="p">:</span> <span class="nx">target</span><span class="p">.</span><span class="nx">offset</span><span class="p">().</span><span class="nx">top</span>
+			<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+			<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+		    <span class="p">}</span>
+		<span class="p">}</span>
+	    <span class="p">});</span>
+	<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>Obviamente necesitarás que esté presente JQuery en tu proyecto web.</p>
+
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://programadorwebvalencia.com/img/blog/2021/03/websockets-sobre-html.png" alt="HTML sobre WebSockets">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">HTML sobre WebSockets</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Programador Web Valencia</a> <span class="article__date">14 03 2021</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        <p><img src="https://programadorwebvalencia.com/img/blog/2021/03/websockets-sobre-html.png" alt="WebSockets sobre HTML" /></p>
+
+<p>La forma tradicional de <strong>conseguir una SPA (Single-page Application) es dividir las responsabilidades</strong>, el Back-End sirve la información y el Front-End la dibuja dinámicamente. Tristemente implica un <strong>doble esfuerzo</strong> en el desarrollo siendo necesario la creación de 2 aplicaciones con tecnologías diferentes aumentando costes e involucrando a dos perfiles especializados. Aunque, por supuesto, es el precio que debemos pagar si queremos una web en tiempo real y que se renderice en un pestañeo. ¿O hay una alternativa? ¿Con incluso <strong>mejor rendimiento</strong>? Así es, y además es <strong>más fácil</strong> de desarrollar al trabajar con <strong>un solo lenguaje</strong>. Esta arquitectura se denomina: <strong>HTML sobre WebSockets</strong>.</p>
+
+<p><strong>Chris McCord</strong>, creador de Phoenix (el Framework más popular dentro del ecosistema Elixir), presentó en <strong>ElixirConf 2019</strong> una tecnología llamada <a href="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html">LiveView</a>. En apenas <a href="https://www.youtube.com/watch?v=MZvmYaFkNJI">15 minutos creó un clon de Twitter que funcionaba en tiempo real</a> <strong>sin necesidad de incorporar JavaScript renderizador</strong> o un framework popular (React, Angular, Vue…) que gestione la Vista, demostrando que era posible quedarse en el Back-End y lograr productividad con una dulce aroma a buen rendimiento. Desde entonces se ha popularizado esta solución, <strong>inspirado a otros desarrolladores</strong> para crear implementaciones de HTML sobre WebSockets en <strong>otros lenguajes</strong>. Se puede volver al <strong>Back-End pero sin renunciar a lo bueno del Front-End</strong>.</p>
+
+<h2 id="cómo-funciona">¿Cómo funciona?</h2>
+
+<p><strong>Disclamer: ¡si se usa JavaScript!</strong> Su labor no es renderizar sino crear un canal de comunicación con WebSockets y situar el HTML recibido en el lugar adecuado. Además de otras tareas secundarias como animaciones, gestión de eventos, etc.</p>
+
+<p>La solución de McCord es <strong>no enviar al Front-End un JSON, sino HTML</strong> que no necesite ser preprocesado. De ese modo trasladamos la carga del dibujado, y toda su lógica, al Back-End. Ya pero… ¿Cómo hacemos que el servidor nos envíe nuevo contenido de forma inmediata y sin realizar una petición? Sencillo: con WebSockets.</p>
+
+<p>Repasemos el sistema <strong>tradicional</strong> de la introducción. Desde la Web hago una petición HTTP, el navegador inicia la acción, obteniendo en la respuesta un JSON con toda la información en crudo. Lo siguiente es interpretar y crear el HTML correspondiente.</p>
+
+<p><img src="https://programadorwebvalencia.com/img/blog/2021/03/websockets-sobre-html-tradicional.jpg" alt="Tradicional" class="medium" /></p>
+
+<p>Mientras que HTML sobre WebSockets puede ser el <strong>envío de un JSON donde se devuelve HTML/CSS/JS</strong>. O incluso puede quitar el propio envío quedando a la escucha.</p>
+
+<p><img src="https://programadorwebvalencia.com/img/blog/2021/03/websockets-sobre-html-protocolo.jpg" alt="Protocolo WebSockets sobre HTML" class="medium" /></p>
+
+<p>Veamos el <strong>ejemplo</strong> donde se renderiza el artículo número 2 de un blog.</p>
+
+<h3 id="1-conectamos">1. Conectamos</h3>
+
+<p>Partimos con una conexión. Ya hay un tubo de comunicación entre cliente y servidor.</p>
+
+<p><img src="https://programadorwebvalencia.com/img/blog/2021/03/websockets-sobre-html-conectar.jpg" alt="Conectar con WebSockets" class="medium" /></p>
+
+<h3 id="2-petición-de-componente">2. Petición de componente</h3>
+
+<p>El cliente pide el contenido de la ruta “/articulo/2/” a través del canal.</p>
+
+<p><img src="https://programadorwebvalencia.com/img/blog/2021/03/websockets-sobre-html-pedir.jpg" alt="Pedir WebSockets sobre HTML" class="medium" /></p>
+
+<h3 id="3-recepción-de-htmlcssjs">3. Recepción de HTML/CSS/JS</h3>
+
+<p>El servidor genera el HTML/CSS/JS, usando el sistema de plantillas del Back-End, y lo devuelve por el canal.</p>
+
+<p><img src="https://programadorwebvalencia.com/img/blog/2021/03/websockets-sobre-html-recibir.jpg" alt="Recibir WebSockets sobre HTML" class="medium" /></p>
+
+<h3 id="4-impresión">4. Impresión</h3>
+
+<p>Por último, el Front-End lo sitúa en el lugar adecuado o asignado.</p>
+
+<h2 id="dónde-puedo-ver-una-demostración">¿Dónde puedo ver una demostración?</h2>
+
+<p>He creado un <strong>prototipo en Django</strong> de un Blog con 100 entradas, cada artículo esta relacionado con sus respectivos comentarios. Además existe un apartado para visualizar el artículo completo, un paginador y una sección estática con algunos párrafos.</p>
+
+<video src="https://programadorwebvalencia.com/videos/blog/2021/03/demo-websockets-sobre-html.mp4" autoplay="" muted="" loop=""></video>
+
+<p>Aquí puedes ver como los cambios son reflejados en todos los clientes.</p>
+
+<video src="https://programadorwebvalencia.com/videos/blog/2021/03/demo-websockets-sobre-html-broadcast.mp4" autoplay="" muted="" loop=""></video>
+
+<p>Si observáis la url, nunca se cambia de página, y… ¡aun así funciona! ¿Quieres <strong>probarlo por ti mismo</strong>? Tienes la posibilidad de levantarlo a partir del <a href="https://github.com/tanrax/demo-HTML-over-WebSockets-in-Django">código fuente en GitHub</a>, esta Docketizado a un comando de distancia para arrancarlo.</p>
+
+<h2 id="cuáles-son-sus-ventajas">¿Cuáles son sus ventajas?</h2>
+
+<ul>
+  <li>Solo hay <strong>un motor de renderizado</strong>, simplificando la tarea.</li>
+  <li><strong>Real-time</strong>, los clientes reciben los cambios tan rápido como sea posible.</li>
+  <li>El protocolo <strong>WebSockets es más rápido que HTTP</strong>. Fuente: <a href="https://stackoverflow.com/questions/14703627/websockets-protocol-vs-http:">starkoveflow</a></li>
+  <li>Apropiado para <strong>conexiones lentas</strong>. Fuente: <a href="https://browsee.io/blog/websocket-vs-http-calls-performance-study/">browsee</a>.</li>
+  <li>Crear un <strong>SPA sin apenas JavaScript</strong>.</li>
+  <li><strong>Excelente SEO</strong>, los motores de búsqueda adorarán la página al encontrarse solo HTML.</li>
+</ul>
+
+<h2 id="cuáles-son-sus-inconvenientes">¿Cuáles son sus inconvenientes?</h2>
+
+<ul>
+  <li>El servidor necesitará <strong>más recursos</strong> al tener que dejar un WebSocket abierto por cliente.</li>
+  <li><strong>Poca documentación</strong> al respecto.</li>
+  <li><strong>Pocos frameworks</strong>.</li>
+</ul>
+
+<h2 id="qué-frameworks-existen">¿Qué Frameworks existen?</h2>
+
+<p>Puedes empezar por los siguientes recursos.</p>
+
+<ul>
+  <li><strong>Elixir/Phoenix</strong>: LiveView.</li>
+  <li><strong>Python/Django</strong>: Sockpuppet y Reactor.</li>
+  <li><strong>C#/.NET</strong>: Blazor Server.</li>
+  <li><strong>JavaScript</strong>: <a href="https://turbo.hotwire.dev/">Turbo</a> con <a href="https://stimulus.hotwire.dev/">Stimulus</a></li>
+</ul>
+
+<h2 id="apuntes-finales">Apuntes finales</h2>
+
+<p>No creo que sea la solución definitiva, pero merece ser escuchada. Es llamativo su <strong>creciendo adopción</strong> y herramientas que están apareciendo. A nivel personal se sorprendió <strong>lo poco conocido que es</strong>, posiblemente a causa del <strong>poderoso ecosistema de JavaScript</strong>. Sin embargo es todo un placer no estar en la carrera de fondo que supone el Front-End para no quedarte desactualizado, y centrarte en el lenguaje de servidor.</p>
+
+<p>En serio, ¿qué puedes perder por probarlo?</p>
+
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://republicaweb.es/wp-content/uploads/2020/09/cropped-logo-republica-web-v4-cover-32x32.jpg" alt="Itinerario de Desarrollador Backend">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">Itinerario de Desarrollador Backend</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Podcast República Web</a> <span class="article__date">30 11 2019</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        A la hora de empezar a desarrollar web, el perfil del desarrollador Backend se ve como una especialización. Donde el programador se enfoca desarrollo de API’s REST y su integración con la arquitectura de microservicios. Partiendo de la base de unos requisitos mínimos: Fundamentos de programación Programación estructurada Bases de datos relacionales Vamos a identificar tres posibles caminos: Java Javascript Python En los tres casos tendremos una buena base de programación orientada a objetos y la posibilidad de tener acceso &#8230; <a href="https://republicaweb.es/articulos/itinerario-de-desarrollador-backend/">Ver más</a>
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://republicaweb.es/wp-content/uploads/2020/09/cropped-logo-republica-web-v4-cover-32x32.jpg" alt="Construye tu contenido en internet con independencia de las plataformas">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">Construye tu contenido en internet con independencia de las plataformas</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Podcast República Web</a> <span class="article__date">18 11 2019</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        Son tiempos de movimiento en el mundo del podcasting. Cada vez son más las iniciativas que buscan atraer y retener audiencias en el medio. Para muchos productores de contenido, el podcasting se antoja como un refugio de las guerras por el clic y la publicidad agresiva de la programática. El podcasting sigue creciendo y a esos pioneros programas amateur, se van uniendo producciones más originales y ambiciosas. Pero tanto si eres un pez grande como uno pequeño, a tus contenidos &#8230; <a href="https://republicaweb.es/articulos/construye-contenido-internet-independencia-plataformas/">Ver más</a>
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://republicaweb.es/wp-content/uploads/2020/09/cropped-logo-republica-web-v4-cover-32x32.jpg" alt="Itinerario de Desarrollador Frontend">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">Itinerario de Desarrollador Frontend</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Podcast República Web</a> <span class="article__date">16 09 2019</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        El perfil de Desarrollador Frontend es uno de los más populares en la industria del desarrollo de aplicaciones TIC (Tecnologías de la Información y la Comunicación, IT en inglés). Los requisitos habituales para este tipo de perfiles varían de empresa u organización pero siempre tienen una serie de aptitudes que son necesarias. Dentro de esta capacidades hay una serie de de mínimos que un futuro Desarrollador FrontEnd debe conocer, como son: Fundamentos de programación, Redes de Comunicaciones. Los fundamentos de &#8230; <a href="https://republicaweb.es/articulos/itinerario-de-desarrollador-frontend/">Ver más</a>
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://republicaweb.es/wp-content/uploads/2020/09/cropped-logo-republica-web-v4-cover-32x32.jpg" alt="¿Qué deberíamos exigir a un contratista en un desarrollo web?">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">¿Qué deberíamos exigir a un contratista en un desarrollo web?</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Podcast República Web</a> <span class="article__date">04 08 2019</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        Cuando nos enfocamos al desarrollo software, solemos ver los requisitos que nos pone el cliente como las normas que deben guiar el proyecto que debe llevarlo a cabo. Para ello es interesante ponernos en la piel de nuestros clientes sobre lo que esperan de un contratista o un licitador. En este artículo intentaré resumir aquellos requisitos que personalmente pondría si tuviera que contratar un desarrollo a una empresa. Estos criterios podrán trasladarse de una manera efectiva y objetiva a los &#8230; <a href="https://republicaweb.es/articulos/que-deberiamos-exigir-a-un-contratista-en-un-desarrollo-web/">Ver más</a>
+                    </main>
+                </article>
+            </a>
+            
+            <a class="feed__article article" target="_blank" href="">
+                <article>
+                    <header class="article__header">
+                        
+                        <p class="article__header-img">
+                            <img loading="lazy" src="https://republicaweb.es/wp-content/uploads/2020/09/cropped-logo-republica-web-v4-cover-32x32.jpg" alt="Los podcasts que escuchamos en República Web">
+                        </p>
+                        
+                        <div class="article__titles">
+                            <h1 class="article__title">Los podcasts que escuchamos en República Web</h1>
+                            <h2 class="article__feed"><a target="_blank" href="">Podcast República Web</a> <span class="article__date">26 07 2019</span></h2>
+                        </div>
+                    </header>
+                    <main class="container article__main">
+                        No hay persona que tenga un podcast y que a su vez no sea un oyente habitual. A menudo, incluso un oyente compulsivo. Por supuesto el equipo de República Web también tenemos una lista bastante abultada de programas que escuchamos casi siempre que podemos. El otro día propuse a mis dos compañeros, que me pasaron algunos de los que escuchan ellos y así entre los tres, poder hacer una lista de recomendaciones. El único requisito es que estuvieran relacionados con &#8230; <a href="https://republicaweb.es/articulos/podcasts-que-escuchamos-en-republica-web/">Ver más</a>
+                    </main>
+                </article>
+            </a>
+            
+        </main>
+    </div>
+    <footer class="footer">
+        <hr class="separator">
+        <p class="footer__text">
+            Generated with <a class="footer__link" href="https://github.com/tanrax/RSSpaper">RSSpaper</a> and a lot of <span class="footer__heard">❤️</span>️
+        </p>
+    </footer>
+</body>
+</html>
