@@ -15,6 +15,11 @@
                  [clj-time "0.15.2"]
                  ;; Parse RSS/Atom feeds
                  [remus "0.2.1"]
+                 [org.slf4j/slf4j-log4j12 "1.7.25"]
+                 [log4j/log4j "1.2.12" :exclusions [javax.mail/mail
+                                                    javax.jms/jms
+                                                    com.sun.jmdk/jmxtools
+                                                    com.sun.jmx/jmxri]]
                  ;; Make RSS/Atom feeds
                  [clj-rss "0.2.7"]]
   :plugins [;; DEV TOOLS
