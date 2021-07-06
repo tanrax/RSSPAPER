@@ -1,0 +1,31 @@
+name: build-pack
+
+on: 
+  push:
+  schedule:
+    - cron: "21 6 * * *"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Lein
+      run: |
+        sudo apt update
+        sudo apt install leiningen
+    - name: Build
+      run: |
+        lein run
+    - name: Upload
+      run: |
+        rm -rf docs/index.html
+        mv dist/index.html docs
+        git config user.email "action@github.com"
+        git config user.name "GitHub Action"
+        git add docs/index.html
+        git commit -m 'Update build'
+        git push origin master
+
