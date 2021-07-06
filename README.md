@@ -4,6 +4,9 @@
 <p align="center">
   <a href="https://rsspaper.andros.dev/">👉 DEMO 👈</a>
 </p>
+<p align="center">
+  (My own feed generated daily with Github Actions)
+</p>
 
 ## Run
 
