@@ -4,12 +4,11 @@ theme: light
 # Options: daily, yesterday, weekly or all
 edition: weekly
 feeds:
+  - https://github.com/clockworkpi/launcher/releases.atom
   - https://programadorwebvalencia.com/feed/index.xml
   - http://planet.es.python.org/rss.xml
   - https://diarioestoico.com/feed/
   - https://republicaweb.es/feed/podcast
-
-old:
   - https://static.fsf.org/fsforg/rss/news.xml
   - https://hakibenita.com/feeds/all.atom.xml
   - https://www.blogger.com/feeds/5402814408460261521/posts/default
@@ -20,7 +19,6 @@ old:
   - https://twobithistory.org/feed.xml
   - https://nosinmiscookies.com/feed/
   - http://planet.es.python.org/rss.xml
-  - https://github.com/clockworkpi/launcher/releases.atom
   - https://programadorwebvalencia.com/feed/index.xml
   - https://ondahostil.wordpress.com/feed/
   - http://neofronteras.com/?feed=rss2

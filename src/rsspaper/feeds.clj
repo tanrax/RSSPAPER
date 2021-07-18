@@ -20,8 +20,8 @@
   (let [daily (c/to-long (t/minus (t/now) (t/days 1)))
         weekly (c/to-long (t/minus (t/now) (t/weeks 1)))]
     (case (:edition config)
-      "daily" (filter (fn [article] (>= (:published-date article) daily)) articles)
-      "weekly" (filter (fn [article] (>= (:published-date article) weekly)) articles)
+      "daily" (filter (fn [article] (and (not (nil? (:published-date article))) (>= (:published-date article) daily))) articles)
+      "weekly" (filter (fn [article] (and (not (nil? (:published-date article))) (>= (:published-date article) weekly))) articles)
       :else articles)))
 
 
@@ -49,17 +49,30 @@
          ) articles))
 
 
+(defn order-published
+  [articles]
+  (reverse (sort-by :published-date articles)))
+
+
 (defn get-articles
   []
   ;; Get all feeds from config -> feeds
-  (reverse (sort-by :published-date (->
+  (->
      (reduce
        (fn [feeds feed-url]
-         (conj feeds
-               (parse-url feed-url {:insecure? true :throw-exceptions false}))
-         ) [] (:feeds config))
+         ; Read feed
+         (let [feed (parse-url feed-url {:insecure? true :throw-exceptions false})]
+           ; Check is not null
+           (if (not (nil? feed))
+             ; Add feed
+             (conj feeds feed)
+             ; Alert fail
+             (prn (str "Error with '" feed-url) "'"))))
+         [] (:feeds config))
      zip-feeds-in-articles
      datetimes-to-unixtime
      filter-edition
+     order-published
      add-cover-article
-     add-datetimes-formatter))))
+     add-datetimes-formatter
+     ))
