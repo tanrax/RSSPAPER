@@ -17,11 +17,11 @@
 
 (defn filter-edition
   [articles]
-  (let [daily (- (c/to-long (t/now)) 86400)
-        weekly (- (c/to-long (t/now)) 604800)]
+  (let [daily (c/to-long (t/minus (t/now) (t/days 1)))
+        weekly (c/to-long (t/minus (t/now) (t/weeks 1)))]
     (case (:edition config)
-      "daily" (filter (fn [article] (> (:published-date article) daily)) articles)
-      "weekly" (filter (fn [article] (> (:published-date article) weekly)) articles)
+      "daily" (filter (fn [article] (>= (:published-date article) daily)) articles)
+      "weekly" (filter (fn [article] (>= (:published-date article) weekly)) articles)
       :else articles)))
 
 

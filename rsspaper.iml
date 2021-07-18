@@ -31,6 +31,7 @@
     <orderEntry type="library" name="Leiningen: hiccup:1.0.5" level="project" />
     <orderEntry type="library" name="Leiningen: joda-time:2.10" level="project" />
     <orderEntry type="library" name="Leiningen: json-html:0.4.4" level="project" />
+    <orderEntry type="library" name="Leiningen: log4j:1.2.12" level="project" />
     <orderEntry type="library" name="Leiningen: nrepl:0.6.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpasyncclient:4.1.4" level="project" />
     <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpclient-cache:4.5.10" level="project" />
@@ -44,7 +45,8 @@
     <orderEntry type="library" name="Leiningen: org.clojure/data.xml:0.2.0-alpha6" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/spec.alpha:0.2.194" level="project" />
     <orderEntry type="library" name="Leiningen: org.jdom/jdom2:2.0.6" level="project" />
-    <orderEntry type="library" name="Leiningen: org.slf4j/slf4j-api:1.7.16" level="project" />
+    <orderEntry type="library" name="Leiningen: org.slf4j/slf4j-api:1.7.25" level="project" />
+    <orderEntry type="library" name="Leiningen: org.slf4j/slf4j-log4j12:1.7.25" level="project" />
     <orderEntry type="library" name="Leiningen: org.yaml/snakeyaml:1.5" level="project" />
     <orderEntry type="library" name="Leiningen: potemkin:0.4.5" level="project" />
     <orderEntry type="library" name="Leiningen: remus:0.2.1" level="project" />
