@@ -29,8 +29,9 @@
             [lein-cljfmt "0.6.4"]]
   ;; ALIAS
   :aliases {"check-idiomatic" ["kibit" "src"]
-            "check-format"    ["cljfmt" "check"]}
-  ;; LEIN
+            "check-format"    ["cljfmt" "check"]
+            "fix-format"    ["cljfmt" "fix"]}
+;; LEIN
   :main ^:skip-aot rsspaper.core
   :aot  [rsspaper.core]
   :repl-options {:init-ns rsspaper.core})

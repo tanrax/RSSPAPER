@@ -4,7 +4,6 @@
    [rsspaper.config :refer [config]]
    [selmer.parser :as s]))
 
-
 (defn make-html
   [articles]
   ;; Render html in dist/index.html
@@ -16,7 +15,5 @@
     (.mkdir (java.io.File. dir))
     ;; Make dist/index.html
     (with-open [wrtr (io/writer path)]
-      (.write wrtr (s/render-file (str "themes/" (:theme config) ".html") {
-                                                                           :title (:title config)
-                                                                           :articles articles
-                                                                           })))))
+      (.write wrtr (s/render-file (str "themes/" (:theme config) ".html") {:title (:title config)
+                                                                           :articles articles})))))

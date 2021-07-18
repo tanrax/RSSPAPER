@@ -106,13 +106,14 @@
         .article__title, .article__feed {
             font-weight: normal;
         }
+
         .article__header-img > a > img {
             height: var(--height-img);
             object-position: center;
             object-fit: contain;
         }
         .article__random-background {
-            height: var(--height-img);
+            height: 100%;
             width: 100%;
         }
     </style>
@@ -235,9 +236,6 @@
         {
             font-size: 1rem;
         }
-
-
-
         .article__main {
             position: fixed;
             left: -100%;
@@ -246,9 +244,13 @@
             overflow-y: auto;
 
         }
-
-        .feed__article:nth-child(1) .article__random-background {
-            height: initial;
+        .feed__article:nth-child(1) .article__header {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .feed__article:nth-child(1) .article__header-img {
+            height: 100%;
         }
     </style>
     <!-- End CSS -->
