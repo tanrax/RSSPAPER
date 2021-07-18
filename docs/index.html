@@ -106,13 +106,14 @@
         .article__title, .article__feed {
             font-weight: normal;
         }
+
         .article__header-img > a > img {
             height: var(--height-img);
             object-position: center;
             object-fit: contain;
         }
         .article__random-background {
-            height: var(--height-img);
+            height: 100%;
             width: 100%;
         }
     </style>
@@ -235,9 +236,6 @@
         {
             font-size: 1rem;
         }
-
-
-
         .article__main {
             position: fixed;
             left: -100%;
@@ -246,9 +244,13 @@
             overflow-y: auto;
 
         }
-
-        .feed__article:nth-child(1) .article__random-background {
-            height: initial;
+        .feed__article:nth-child(1) .article__header {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .feed__article:nth-child(1) .article__header-img {
+            height: 100%;
         }
     </style>
     <!-- End CSS -->
@@ -1696,27 +1698,6 @@ nice improvement I am pretty sure you can see me happily smiling right now.</p>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://blog.elhacker.net/2021/07/alternativas-correo-gmail-basadas-en-la-privacidad-primero.html">Alternativas correo Gmail basadas en la privacidad</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="https://blog.elhacker.net/">Blog elhacker.NET</a> <span class="article__date">11 07 2021</span></h2>
-                        </div>
-                    </header>
-                    <main class="container article__main">
-                        
-                    </main>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://blog.elhacker.net/2021/07/descubren-un-conductor-contrabando-256-cpu-pegadas-a-su-cuerpo.html">
-                                
-                                <canvas class="article__random-background"></canvas>
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://blog.elhacker.net/2021/07/descubren-un-conductor-contrabando-256-cpu-pegadas-a-su-cuerpo.html">Descubren a un conductor de contrabando con 256 CPUs pegadas su cuerpo en la aduana de Hong Kong</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://blog.elhacker.net/">Blog elhacker.NET</a> <span class="article__date">11 07 2021</span></h2>
                         </div>
