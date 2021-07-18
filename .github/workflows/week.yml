@@ -23,9 +23,11 @@ jobs:
       run: |
         rm -rf docs/index.html
         mv dist/index.html docs
+        cp -rf resources/static/ docs
         git config user.email "action@github.com"
         git config user.name "GitHub Action"
         git add docs/index.html
-        git commit -m "$(date +"%F")"  
+        git add docs/static/
+        git commit -m "$(date +"%F")"
         git push origin main
 
