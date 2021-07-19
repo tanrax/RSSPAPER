@@ -2,18 +2,32 @@
   (:require
    [clojure.java.io :as io]
    [rsspaper.config :refer [config]]
+   [clojure.string :as str]
    [selmer.parser :as s]))
 
 (defn make-html
   [articles]
   ;; Render html in dist/index.html
-  (let [dir "dist"
-        path (str dir "/index.html")]
+  (let [dir-dist "dist/"
+        path-theme (io/resource (str "themes/" (:theme config) "/"))
+        path-dist-index (str dir-dist "index.html")
+
+        ]
     ;; Remove old index.html
-    (when (.exists (io/file path)) (io/delete-file path))
+    #_(when (.exists (io/file path-dist-index)) (io/delete-file path-dist-index))
     ;; Make dir dist
-    (.mkdir (java.io.File. dir))
+    #_(.mkdir (java.io.File. dir-dist))
     ;; Make dist/index.html
-    (with-open [wrtr (io/writer path)]
-      (.write wrtr (s/render-file (str "themes/" (:theme config) ".html") {:title (:title config)
-                                                                           :articles articles})))))
+    #_(with-open [wrtr (io/writer path-dist-index)]
+      (.write wrtr (s/render-file (str path-theme "index.html") {:title (:title config)
+                                                                                 :articles articles})))
+    ;; Make statics
+    ;; Iterate statics
+    (doseq [file (.listFiles (io/file path-theme) )]
+      (let [path (.getPath file)
+            relative-path (second (str/split path  #"resources/"))
+            relative-dist-path (str dir-dist relative-path)]
+        ;; Remove old static
+        (when (.exists (io/file relative-dist-path)) (io/delete-file relative-dist-path))
+        ;; Copy new static
+        (io/copy (io/file path) (io/file dir-dist))))))
