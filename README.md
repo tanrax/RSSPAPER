@@ -10,7 +10,8 @@
 1) Create a file `config.yaml` with the following content. You can also use `config.yaml.example` as a base config and change it to fit your needs.
 
 ``` yaml
-title: RSSPaper
+# Change the title, it's for you. Maybe you see "My newspaper"?
+title: RSSPAPER
 
 # Options: light or dark
 theme: light
