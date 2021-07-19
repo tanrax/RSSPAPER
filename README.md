@@ -5,6 +5,8 @@
   <a href="https://rsspaper.andros.dev/">👉 DEMO 👈</a> (My own feed generated daily with Github Actions)
 </p>
 
+Generate a static page with the latest news from your favorite feeds. Is it an RSS client? Yes, except that it generates an **HTML/PWA** that you can read or **install on your tablet or mobile** and to **update the news you must run it again**.
+
 ## Run
 
 1) Create a file `config.yaml` with the following content. You can also use `config.yaml.example` as a base config and change it to fit your needs.
@@ -26,7 +28,7 @@ feeds:
 
 2) Download the latest version of RSSpaper (`rsspaper-{version}-standalone.jar`).
 
-https://github.com/tanrax/RSSpaper/releases
+https://github.com/tanrax/RSSPAPER/releases
 
 
 3) Now you can execute.
