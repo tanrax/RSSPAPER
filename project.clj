@@ -13,6 +13,8 @@
                  [cheshire "5.9.0"]
                  ;; Date
                  [clj-time "0.15.2"]
+                 ;; Utils dirs
+                 [me.raynes/fs "1.4.6"]
                  ;; Parse RSS/Atom feeds
                  [remus "0.2.1"]
                  [org.slf4j/slf4j-log4j12 "1.7.25"]
