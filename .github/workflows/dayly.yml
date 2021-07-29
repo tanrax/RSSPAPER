@@ -21,9 +21,9 @@ jobs:
         lein run
     - name: Upload
       run: |
-        rm -rf docs/index.html
+        rm -rf docs/index.html docs/static
         mv dist/index.html docs
-        cp -rf resources/static/ docs
+        mv dist/static docs/
         git config user.email "action@github.com"
         git config user.name "GitHub Action"
         git add docs/index.html
