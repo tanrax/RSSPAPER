@@ -2,7 +2,7 @@
   (:require
     [clojure.java.io :as io]
     [rsspaper.config :refer [config]]
-    [clojure.string :as str]
+    [rsspaper.feeds :refer [get-articles]]
     [selmer.parser :as s]
     [me.raynes.fs :as fs]
     [me.raynes.fs.compression :as fsc]))
@@ -16,8 +16,8 @@
   [articles]
   ;; Render html in dist/index.html
   (let [dir-dist "dist/"
-        file-index "index.html"
         path-theme (io/resource (str "themes/" (:theme config) "/"))
+        file-index "index.html"
         path-dist-index (str dir-dist "index.html")
         zip-static "static.zip"
         tmp-static "/tmp/rsspaper.zip"]
@@ -26,8 +26,11 @@
     ;; Make dir dist
     (fs/mkdir dir-dist)
     ;; Make dist/index.html
+    (selmer.parser/set-resource-path! path-theme)
     (with-open [writer (io/writer path-dist-index)]
-      (.write writer (s/render-file (str path-theme file-index) {:title (:title config)})))
-    ;; Make statics
+      (.write writer (s/render-file file-index {:title (:title config)
+                                                :articles (get-articles)
+                                                })))
+    ;; Make static
     (copy-uri-to-file (str path-theme zip-static) tmp-static)
     (fsc/unzip tmp-static dir-dist)))

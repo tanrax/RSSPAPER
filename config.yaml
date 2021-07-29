@@ -6,7 +6,6 @@ edition: weekly
 feeds:
   - https://github.com/clockworkpi/launcher/releases.atom
   - https://programadorwebvalencia.com/feed/index.xml
-old:
   - http://planet.es.python.org/rss.xml
   - https://diarioestoico.com/feed/
   - https://republicaweb.es/feed/podcast
