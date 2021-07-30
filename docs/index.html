@@ -3,260 +3,29 @@
 <head>
     <meta charset="utf-8">
     <title>RSSPAPER</title>
+    <meta name="description" content="My static news generator">
+    <meta name="generator" content="RSSPAPER">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="static/img/icons/favicon.png">
+    <meta name="theme-color" content="#3c790a">
     <!-- PWA -->
     <link rel="manifest" href="static/manifest.json" />
+    <link rel="apple-touch-icon" href="static/img/icons/apple-icon-180.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <!-- ios support -->
-    <link rel="apple-touch-icon" href="static/img/icons/default.png" />
-    <link rel="apple-touch-icon" href="static/img/icons/default.png" />
-    <link rel="apple-touch-icon" href="static/img/icons/default.png" />
-    <link rel="apple-touch-icon" href="static/img/icons/default.png" />
-    <link rel="apple-touch-icon" href="static/img/icons/default.png" />
-    <link rel="apple-touch-icon" href="static/img/icons/default.png" />
-    <link rel="apple-touch-icon" href="static/img/icons/default.png" />
-    <link rel="apple-touch-icon" href="static/img/icons/default.png" />
     <meta name="apple-mobile-web-app-status-bar" content="#fff" />
     <meta name="theme-color" content="#db4938" />
     <!-- End PWA -->
-    <link rel="icon" type="image/png" href="static/img/icons/default.png">
-    <meta name="theme-color" content="#3c790a">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <meta name="author" content="Tu nombre">
-    <meta name="generator" content="RSSPAPER">
-    <meta name="description" content="My news">
+    <!-- Opengraph -->
     <meta property="og:image" content="img/screenshot.png">
-    <meta property="og:title" content="The Rock">
+    <meta property="og:title" content="RSSPAPER">
     <meta property="og:type" content="website">
-    <!-- Normalize -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <!-- End Normalize -->
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- End Fonts -->
+    <!-- End Opengraph -->
     <!-- CSS -->
-    <style>
-        /* Global */
-        :root {
-            --color-black: black;
-            --color-gray: gray;
-            --height-img: 10rem;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Newsreader', serif;
-            color: var(--color-black);
-        }
-        img {
-            object-fit: cover;
-            object-position: center;
-        }
-        img, video, iframe {
-            width: 100%;
-        }
-        a {
-            color: var(--color-black);
-            text-decoration: none;
-        }
-        pre {
-            overflow-x: auto;
-        }
-        .container {
-            max-width: 62rem;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-
-        .header {
-            margin-bottom: 2rem;
-        }
-
-        .title {
-            text-align: center;
-            font-size: 4rem;
-            font-weight: normal;
-            margin-bottom: 0;
-            margin-top: 1rem;
-        }
-        .subtitle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: -1rem;
-            font-weight: normal;
-            font-size: 1.5rem;
-        }
-        .subtitle__separator {
-            font-size: 3rem;
-            font-weight: bold;
-        }
-        .separator {
-            border: 0;
-            background: var(--color-black);
-            height: 1px;
-        }
-        .footer__text {
-            text-align: center;
-            padding: 1rem 0;
-        }
-        .footer__link {
-            font-weight: bold;
-        }
-        .footer__heard {
-            display: inline-block;
-            margin-left: .3rem;
-        }
-        .article__title, .article__feed {
-            font-weight: normal;
-        }
-
-        .article__header-img > a > img {
-            height: var(--height-img);
-            object-position: center;
-            object-fit: contain;
-        }
-        .article__random-background {
-            height: 100%;
-            width: 100%;
-        }
-    </style>
-    <style media="all and (max-width: 600px)">
-        /* Mobile */
-    </style>
-    <style media="all and (min-width: 601px)">
-        /* Desktop */
-        .main {
-            display: grid;
-            grid-gap: 1rem;
-            grid-template-columns: repeat(12, 1fr);
-        }
-
-        /* First column. */
-        .feed__article:nth-child(3n-2){
-            grid-column: 9 / 13;
-        }
-
-        /* Second column */
-        .feed__article:nth-child(3n+2){
-            grid-column: 1 / 5;
-        }
-
-        /* Third column */
-        .feed__article:nth-child(3n+3) {
-            grid-column: 5 / 9;
-        }
-
-        .article__title {
-            font-size: 1.5rem;
-        }
-
-        .article__feed {
-            font-size: 1rem;
-        }
-
-        .article__date {
-            font-size: .9rem;
-            color: var(--color-gray);
-        }
-
-        .feed__article:nth-child(1) .article__title {
-            font-size: 2rem;
-        }
-
-        .feed__article:nth-child(1) .article__feed {
-            font-size: 1rem;
-        }
-
-        .feed__article:nth-child(1) {
-            grid-column: 1 / 9;
-            grid-row: 1 / 4;
-            text-align: center;
-        }
-
-        .feed__article:nth-child(2) {
-            grid-column: 9 / 13;
-            grid-row: 1 / 2;
-
-        }
-
-        .feed__article:nth-child(3) {
-            grid-column: 9 / 13;
-            grid-row: 2 / 3;
-
-        }
-
-        .feed__article:nth-child(4) {
-            grid-column: 9 / 13;
-            grid-row: 3 / 4;
-        }
-
-        .feed__article:nth-child(2) .article__header,
-        .feed__article:nth-child(3) .article__header,
-        .feed__article:nth-child(4) .article__header
-        {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row-reverse;
-            grid-gap: 1rem;
-        }
-
-        .article__header > p {
-            margin: 0;
-        }
-
-        .article__header-img > img {
-            height: var(--height-img);
-        }
-
-        .feed__article:nth-child(1) .article__header-img > img,
-        .feed__article:nth-child(2) .article__header-img > img,
-        .feed__article:nth-child(3) .article__header-img > img,
-        .feed__article:nth-child(4) .article__header-img > img
-        {
-            height: initial;
-        }
-
-        .feed__article:nth-child(2) .article__titles,
-        .feed__article:nth-child(3) .article__titles,
-        .feed__article:nth-child(4) .article__titles,
-        .feed__article:nth-child(2) .article__header-img,
-        .feed__article:nth-child(3) .article__header-img,
-        .feed__article:nth-child(4) .article__header-img
-        {
-            width: 50%;
-        }
-
-        .feed__article:nth-child(2) .article__title,
-        .feed__article:nth-child(3) .article__title,
-        .feed__article:nth-child(4) .article__title
-        {
-            font-size: 1.2rem;
-        }
-
-        .feed__article:nth-child(2) .article__feed,
-        .feed__article:nth-child(3) .article__feed,
-        .feed__article:nth-child(4) .article__feed
-        {
-            font-size: 1rem;
-        }
-        .article__main {
-            position: fixed;
-            left: -100%;
-            top: 0;
-            bottom: 0;
-            overflow-y: auto;
-
-        }
-        .feed__article:nth-child(1) .article__header {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        .feed__article:nth-child(1) .article__header-img {
-            height: 100%;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="static/css/normalize.css">
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/desktop.css" media="all and (max-width: 600px)">
+    <link rel="stylesheet" href="static/css/mobile.css" media="all and (min-width: 601px)">
     <!-- End CSS -->
 </head>
 <body>
@@ -279,9 +48,27 @@
                         </p>
                         <div class="article__titles">
                             <h1 class="article__title">
-                                <a target="_blank" href="https://vlctechhub.org/events/como-se-hacen-posible-los-micro-y-nano-pagos-sobre-blockchain-60f90794a62a">Jueves 29 de julio | Como se hacen posible los Micro y Nano pagos sobre Blockchain por @avalBit</a>
+                                <a target="_blank" href="https://vlctechhub.org/events/como-se-hacen-posible-los-micro-y-nano-pagos-sobre-blockchain-60f90794a62a">Viernes 30 de julio | Como se hacen posible los Micro y Nano pagos sobre Blockchain por @avalBit</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://vlctechhub.org/">VLCTechHub Feed</a> <span class="article__date">30 07 2021</span></h2>
+                        </div>
+                    </header>
+                </article>
+            
+                <article class="feed__article article">
+                    <header class="article__header">
+                        <p class="article__header-img">
+                            <a target="_blank" href="https://blog.elhacker.net/2021/07/contratistas-de-defensa-de-eu-fueron-enganados-por-bellas-instructoras-aerobic-hackearon-cuentas-email.html">
+                                
+                                <canvas class="article__random-background"></canvas>
+                                
+                            </a>
+                        </p>
+                        <div class="article__titles">
+                            <h1 class="article__title">
+                                <a target="_blank" href="https://blog.elhacker.net/2021/07/contratistas-de-defensa-de-eu-fueron-enganados-por-bellas-instructoras-aerobic-hackearon-cuentas-email.html">Contratistas de defensa de E.U. fueron engañados por “bellas instructoras de aeróbics” que hackearon sus cuentas de email</a>
+                            </h1>
+                            <h2 class="article__feed"><a target="_blank" href="https://blog.elhacker.net/">Blog elhacker.NET</a> <span class="article__date">30 07 2021</span></h2>
                         </div>
                     </header>
                 </article>
@@ -920,42 +707,6 @@
                                 <a target="_blank" href="https://workchronicles.com/anonymous-employee-survey/">Anonymous Employee Survey</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://workchronicles.com">Work Chronicles</a> <span class="article__date">23 07 2021</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://www.clojuriststogether.org/news/q3-2021-survey-results/">
-                                
-                                <canvas class="article__random-background"></canvas>
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://www.clojuriststogether.org/news/q3-2021-survey-results/">Q3 2021 Survey Results</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="https://www.clojuriststogether.org/news/">News on Clojurists Together</a> <span class="article__date">23 07 2021</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://blog.elhacker.net/2021/07/el-97-de-los-emails-dominios-es-que-usan-los-funcionarios-espana-vulnerables-suplantacion-identidad-phishing.html">
-                                
-                                <canvas class="article__random-background"></canvas>
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://blog.elhacker.net/2021/07/el-97-de-los-emails-dominios-es-que-usan-los-funcionarios-espana-vulnerables-suplantacion-identidad-phishing.html">El 97% de los emails que usan los funcionarios Españoles está desprotegido frente a robos de identidad </a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="https://blog.elhacker.net/">Blog elhacker.NET</a> <span class="article__date">23 07 2021</span></h2>
                         </div>
                     </header>
                 </article>
