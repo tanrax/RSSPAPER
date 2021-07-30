@@ -28,7 +28,6 @@
     <orderEntry type="library" name="Leiningen: commons-codec:1.11" level="project" />
     <orderEntry type="library" name="Leiningen: commons-io:2.6" level="project" />
     <orderEntry type="library" name="Leiningen: commons-logging:1.2" level="project" />
-    <orderEntry type="library" name="Leiningen: cpath-clj:0.1.2" level="project" />
     <orderEntry type="library" name="Leiningen: hiccup:1.0.5" level="project" />
     <orderEntry type="library" name="Leiningen: joda-time:2.10" level="project" />
     <orderEntry type="library" name="Leiningen: json-html:0.4.4" level="project" />
@@ -46,7 +45,6 @@
     <orderEntry type="library" name="Leiningen: org.clojure/core.specs.alpha:0.2.56" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/data.codec:0.1.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/data.xml:0.2.0-alpha6" level="project" />
-    <orderEntry type="library" name="Leiningen: org.clojure/java.classpath:0.2.2" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/spec.alpha:0.2.194" level="project" />
     <orderEntry type="library" name="Leiningen: org.jdom/jdom2:2.0.6" level="project" />
     <orderEntry type="library" name="Leiningen: org.slf4j/slf4j-api:1.7.25" level="project" />
