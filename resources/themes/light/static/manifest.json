@@ -16,7 +16,7 @@
       "purpose": "maskable any"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://rsspaper.andros.dev/index.html",
   "display": "standalone",
   "background_color": "#ffffff"
 }
