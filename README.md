@@ -30,6 +30,7 @@ feeds:
 
 https://github.com/tanrax/RSSPAPER/releases
 
+(Both `jar` and `config.yaml` must be in the same directory)
 
 3) Now you can execute.
 
