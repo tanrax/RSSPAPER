@@ -1,11 +1,11 @@
 (ns rsspaper.html
   (:require
-    [clojure.java.io :as io]
-    [rsspaper.config :refer [config]]
-    [rsspaper.feeds :refer [get-articles]]
-    [selmer.parser :as s]
-    [me.raynes.fs :as fs]
-    [me.raynes.fs.compression :as fsc]))
+   [clojure.java.io :as io]
+   [rsspaper.config :refer [config]]
+   [rsspaper.feeds :refer [get-articles]]
+   [selmer.parser :as s]
+   [me.raynes.fs :as fs]
+   [me.raynes.fs.compression :as fsc]))
 
 (defn copy-uri-to-file [uri file]
   (with-open [in (io/input-stream uri)
@@ -29,8 +29,7 @@
     (selmer.parser/set-resource-path! path-theme)
     (with-open [writer (io/writer path-dist-index)]
       (.write writer (s/render-file file-index {:title (:title config)
-                                                :articles (get-articles)
-                                                })))
+                                                :articles (get-articles)})))
     ;; Make static
     (copy-uri-to-file (str path-theme zip-static) tmp-static)
     (fsc/unzip tmp-static dir-dist)))
