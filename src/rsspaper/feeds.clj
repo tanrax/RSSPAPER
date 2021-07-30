@@ -1,6 +1,7 @@
 (ns rsspaper.feeds
   (:require
    [rsspaper.config :refer [config]]
+   [clj-http.client :as client]
    [clj-time.core :as t]
    [clj-time.coerce :as c]
    [clj-time.format :as f]
@@ -20,7 +21,7 @@
     (case (:edition config)
       "daily" (filter (fn [article] (and (not (nil? (:published-date article))) (>= (:published-date article) daily))) articles)
       "weekly" (filter (fn [article] (and (not (nil? (:published-date article))) (>= (:published-date article) weekly))) articles)
-      :else articles)))
+      articles)))
 
 (defn add-datetimes-formatter
   [articles]
@@ -39,11 +40,18 @@
   ;; Add cover to article search first image in description
   ;; Iterate every blog
   (map (fn [article]
-         (let [url-article (second (re-find #"<img[^>]+src=\"([^\">]+)\"" (str  (get-in article [:description :value]))))]
-           (assoc article :cover (if (nil? url-article) (get-in article [:feed :image :url]) url-article)))) articles))
+         (let [url-article (get-in article [:feed :link])
+               html (:body (client/get url-article {:insecure? true}))
+               first-content (second (re-find #"<meta.*content=\"([^\">]+)\".*property=\"og:image(?::url)?\".*>" html))
+               second-content (second (re-find #"<meta.*property=\"og:image(?::url)?\".*content=\"([^\">]+)\".*>" html))
+               first-image (second (re-find #"<img[^>]+src=\"([^\">]+)\"" html))
+               images [first-content second-content first-image]
+               final-image (first (filter (fn [item] (not (nil? item))) images))]
+           (assoc article :cover final-image))) articles))
 
 (defn order-published
   [articles]
+  ;; Order articles
   (reverse (sort-by :published-date articles)))
 
 (defn get-articles

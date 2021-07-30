@@ -13,6 +13,8 @@
                  [cheshire "5.9.0"]
                  ;; Date
                  [clj-time "0.15.2"]
+                 ;; HTTP client
+                 [clj-http "3.12.3"]
                  ;; Utils dirs
                  [me.raynes/fs "1.4.6"]
                  ;; Parse RSS/Atom feeds
