@@ -42,9 +42,9 @@
   (map (fn [article]
          (let [url-article (get-in article [:feed :link])
                html (:body (client/get url-article {:insecure? true}))
-               first-content (second (re-find #"^<meta.*content=\"([^\">]+)\".*property=\"og:image(?::url)?\".*>$" html))
-               second-content (second (re-find #"^<meta.*property=\"og:image(?::url)?\".*content=\"([^\">]+)\".*>$" html))
-               first-image (second (re-find #"<img[^>]+src=\"([^\">]+)\"" html))
+               first-content (second (re-find #"<meta.*content=\"([^\">]+)\"[^>].*property=\"og:image(?::url)?\".*>" html))
+               second-content (second (re-find #"<meta.*property=\"og:image(?::url)?\"[^>].*content=\"([^\">]+)\".*>" html))
+               first-image (second (re-find #"(<main|id=\".*main.*\"|class=\".*main.*\").*<img[^>]+src=\"([^\">]+)\"" html))
                images [first-content second-content first-image]
                final-image (first (filter (fn [item] (not (nil? item))) images))]
            (assoc article :cover final-image))) articles))
