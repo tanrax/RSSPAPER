@@ -2,6 +2,7 @@
 :root {
     --color-black: black;
     --color-gray: gray;
+    --color-background: #f9f7f1;
     --height-img: 10rem;
 }
 
@@ -16,7 +17,7 @@ body {
     padding: 0;
     font-family: Newsreader, serif;
     color: var(--color-black);
-    background-image: url("../img/background.jpg");
+    background-color: var(--color-background);
     background-size: 100%;
 }
 img {
