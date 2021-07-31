@@ -8,6 +8,7 @@
 @font-face {
     font-family: Newsreader;
     src: url("../fonts/Newsreader-VariableFont_opsz,wght.woff2");
+    font-display: swap;
 }
 
 body {
