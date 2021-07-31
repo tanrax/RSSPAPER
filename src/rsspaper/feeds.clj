@@ -43,7 +43,7 @@
          (let [url-article (get-in article [:feed :link])
                html (:body (client/get url-article {:insecure? true}))
                url-og-image (second (re-find #"<meta[^>].*?property=\"og:image(?::url)?\".*?content=\"(.*?)\".*?>|<meta[^>].*?content=\"(.*?)\".*?property=\"og:image(?::url)?\".*?>" html))
-               url-first-image (second (re-find #"(<main|id=\".*main.*\"|class=\".*main.*\").*<img[^>]+src=\"([^\">]+)\"" html))
+               url-first-image (second (re-find #"<main.*>[\s\S]*<img[^>]+src=\"([^\"\'|>]+)\"|id=[\'\"] ?main ?[\'\"]>[\s\S]*<img[^>]+src=\"([^\"\'|>]+)\"|class=[\'\"] ?main ?[\'\"]>[\s\S]*<img[^>]+src=\"([^\"\'|>]+)\"" html))
                images [url-og-image url-first-image]
                url-final-image (first (filter (fn [item] (not (nil? item))) images))]
            (assoc article :cover url-final-image))) articles))
