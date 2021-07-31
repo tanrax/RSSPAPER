@@ -85,8 +85,8 @@ pre {
 
 .article__header-img > a > img {
     height: var(--height-img);
-    object-position: center;
-    object-fit: contain;
+    object-position: top;
+    object-fit: cover;
 }
 .article__random-background {
     height: 100%;

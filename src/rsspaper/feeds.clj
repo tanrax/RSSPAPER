@@ -40,10 +40,13 @@
   ;; Add cover to article search first image in description
   ;; Iterate every blog
   (map (fn [article]
-         (let [url-article (get-in article [:feed :link])
+         ; User feedback
+         (prn (str  "Looking for cover image for article > " (:link article)))
+         ; Search cover image
+         (let [url-article (:link article)
                html (:body (client/get url-article {:insecure? true}))
                url-og-image (second (re-find #"<meta[^>].*?property=\"og:image(?::url)?\".*?content=\"(.*?)\".*?>|<meta[^>].*?content=\"(.*?)\".*?property=\"og:image(?::url)?\".*?>" html))
-               url-first-image (second (re-find #"<main.*>[\s\S]*<img[^>]+src=\"([^\"\'|>]+)\"|id=[\'\"] ?main ?[\'\"]>[\s\S]*<img[^>]+src=\"([^\"\'|>]+)\"|class=[\'\"] ?main ?[\'\"]>[\s\S]*<img[^>]+src=\"([^\"\'|>]+)\"" html))
+               url-first-image (second (re-find #"<main.*>[\s\S]+<img[^>]+src=\"([^\">]+)\"|id=['\"] ?main ?['\"]>[\s\S]+<img[^>]+src=\"([^\">]+)\"|class=['\"] ?main ?[\'\"]>[\s\S]+<img[^>]+src=\"([^\">]+)\"" html))
                images [url-og-image url-first-image]
                url-final-image (first (filter (fn [item] (not (nil? item))) images))]
            (assoc article :cover url-final-image))) articles))
@@ -61,6 +64,8 @@
     (fn [feeds feed-url]
        ; Read feed
       (let [feed (parse-url feed-url {:insecure? true :throw-exceptions false})]
+        ; User feedback
+        (prn (str  "Reading RSS > " feed-url))
          ; Check is not null
         (if-not (nil? feed)
            ; Add feed
