@@ -1,0 +1,135 @@
+/* Desktop */
+.main {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+/* First column. */
+.feed__article:nth-child(3n-2){
+    grid-column: 9 / 13;
+}
+
+/* Second column */
+.feed__article:nth-child(3n+2){
+    grid-column: 1 / 5;
+}
+
+/* Third column */
+.feed__article:nth-child(3n+3) {
+    grid-column: 5 / 9;
+}
+
+.article__title {
+    font-size: 1.5rem;
+}
+
+.article__feed {
+    font-size: 1rem;
+}
+
+.article__date {
+    font-size: .9rem;
+    color: var(--color-gray);
+}
+
+.feed__article:nth-child(1) .article__title {
+    font-size: 2rem;
+}
+
+.feed__article:nth-child(1) .article__feed {
+    font-size: 1rem;
+}
+
+.feed__article:nth-child(1) {
+    grid-column: 1 / 9;
+    grid-row: 1 / 4;
+    text-align: center;
+}
+
+.feed__article:nth-child(2) {
+    grid-column: 9 / 13;
+    grid-row: 1 / 2;
+
+}
+
+.feed__article:nth-child(3) {
+    grid-column: 9 / 13;
+    grid-row: 2 / 3;
+
+}
+
+.feed__article:nth-child(4) {
+    grid-column: 9 / 13;
+    grid-row: 3 / 4;
+}
+
+.feed__article:nth-child(2) .article__header,
+.feed__article:nth-child(3) .article__header,
+.feed__article:nth-child(4) .article__header
+{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    grid-gap: 1rem;
+}
+
+.article__header > p {
+    margin: 0;
+}
+
+.article__header-img > img {
+    height: var(--height-img);
+}
+
+.feed__article:nth-child(1) .article__header-img > img,
+.feed__article:nth-child(2) .article__header-img > img,
+.feed__article:nth-child(3) .article__header-img > img,
+.feed__article:nth-child(4) .article__header-img > img
+{
+    height: initial;
+}
+
+.feed__article:nth-child(2) .article__titles,
+.feed__article:nth-child(3) .article__titles,
+.feed__article:nth-child(4) .article__titles,
+.feed__article:nth-child(2) .article__header-img,
+.feed__article:nth-child(3) .article__header-img,
+.feed__article:nth-child(4) .article__header-img
+{
+    width: 50%;
+}
+
+.feed__article:nth-child(2) .article__title,
+.feed__article:nth-child(3) .article__title,
+.feed__article:nth-child(4) .article__title
+{
+    font-size: 1.2rem;
+}
+
+.feed__article:nth-child(2) .article__feed,
+.feed__article:nth-child(3) .article__feed,
+.feed__article:nth-child(4) .article__feed
+{
+    font-size: 1rem;
+}
+.article__main {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+
+}
+.feed__article:nth-child(1) .article__header {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.feed__article:nth-child(1) .article__header-img {
+    height: 100%;
+}
+
+.feed__article:first-child img {
+   height: 100%;
+}
