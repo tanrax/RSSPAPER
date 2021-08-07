@@ -5,6 +5,8 @@
   <a href="https://rsspaper.andros.dev/">👉 DEMO 👈</a> (My own feed generated daily with Github Actions)
 </p>
 
+![demo preview](media/demo.jpg)
+
 Generate a static page with the latest news from your favorite feeds. Is it an RSS client? Yes, except that it generates an **HTML/PWA** that you can read or **install on your tablet or mobile** and to **update the news you must run it again**.
 
 ## Run
