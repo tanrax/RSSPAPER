@@ -23,6 +23,7 @@ jobs:
         lein run
     - name: Upload
       run: |
+        git fetch
         git checkout self
         rm -rf docs/index.html docs/static
         mv dist/index.html docs
