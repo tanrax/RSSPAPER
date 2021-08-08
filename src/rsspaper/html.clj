@@ -20,7 +20,7 @@
         file-index "index.html"
         path-dist-index (str dir-dist "index.html")
         zip-static "static.zip"
-        tmp-static "/tmp/rsspaper.zip"]
+        tmp-static (str (fs/tmpdir) "/rsspaper.zip")]
     ;; Remove old index.html
     (when (.exists (io/file path-dist-index)) (io/delete-file path-dist-index))
     ;; Make dir dist
