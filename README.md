@@ -44,7 +44,7 @@ Great 🎉. You already have your 📰 own Static RSS Newspaper 📰.
 
 That's it, now you just have to open `dist/index.html`.
 
-## Donation objectives
+## Donation target
 
 - **50+ euros**: Dark Theme.
 - **100+ euros**: RSS feed generation to be read by other clients.
