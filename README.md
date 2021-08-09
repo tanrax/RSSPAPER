@@ -43,3 +43,10 @@ java -jar rsspaper-{version}-standalone.jar
 Great 🎉. You already have your 📰 own Static RSS Newspaper 📰.
 
 That's it, now you just have to open `dist/index.html`.
+
+## Donation objectives
+
+- **50+ euros**: Dark Theme.
+- **100+ euros**: RSS feed generation to be read by other clients.
+- **150+ euros**: Integrated web server and auto-compilation.
+- **200+ euros**: Documentation for creating new templates and custom themes.
