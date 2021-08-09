@@ -24,6 +24,7 @@ jobs:
     - name: Upload
       run: |
         git fetch
+        git branch -f self origin/self
         git checkout self
         rm -rf docs/index.html docs/static
         mv dist/index.html docs
