@@ -50,3 +50,7 @@ That's it, now you just have to open `dist/index.html`.
 - **100+ euros**: RSS feed generation to be read by other clients.
 - **150+ euros**: Integrated web server and auto-compilation.
 - **200+ euros**: Documentation for creating new templates and custom themes.
+
+<p align="center">
+  <a href='https://ko-fi.com/androsfenollosa' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+</p>
