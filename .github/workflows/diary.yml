@@ -14,6 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Prepare branch
+      run: |
+        git fetch
+        git branch -f self origin/self
+        git checkout self
     - name: Install Lein
       run: |
         sudo apt update
@@ -21,11 +26,8 @@ jobs:
     - name: Build
       run: |
         lein run
-    - name: Upload
+    - name: Upload new dist
       run: |
-        git fetch
-        git branch -f self origin/self
-        git checkout self
         rm -rf docs/index.html docs/static
         mv dist/index.html docs
         mv dist/static docs/
