@@ -17,8 +17,7 @@ jobs:
     - name: Prepare branch
       run: |
         git fetch --all
-        git branch -f self origin/self
-        git checkout self
+        git checkout ${{ github.head_ref }}
     - name: Install Lein
       run: |
         sudo apt update
