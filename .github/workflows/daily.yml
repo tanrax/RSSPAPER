@@ -1,0 +1,40 @@
+name: build-pack
+
+on: 
+  push:
+    branches:
+    - self
+  schedule:
+    - cron: "21 6 * * *"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Prepare branch
+      run: |
+        git fetch --all
+        #git checkout ${{ github.head_ref }}
+        git checkout origin/self
+    - name: Install Lein
+      run: |
+        sudo apt update
+        sudo apt install leiningen
+    - name: Build
+      run: |
+        lein run
+    - name: Upload new dist
+      run: |
+        rm -rf docs/index.html docs/static
+        mv dist/index.html docs
+        mv dist/static docs/
+        git config user.email "action@github.com"
+        git config user.name "GitHub Action"
+        git add docs/index.html
+        git add docs/static/
+        git commit -m "$(date +"%F")"
+        git push origin self
+
