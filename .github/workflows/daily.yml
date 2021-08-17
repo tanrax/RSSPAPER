@@ -36,5 +36,5 @@ jobs:
         git add docs/index.html
         git add docs/static/
         git commit -m "$(date +"%F")"
-        git push origin self
+        git push origin origin/self
 
