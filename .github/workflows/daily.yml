@@ -5,7 +5,7 @@ on:
     branches:
     - self
   schedule:
-    - cron: "21 6 * * *"
+    - cron: "21 4 * * *"
 
 jobs:
   build:
