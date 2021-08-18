@@ -25,16 +25,20 @@
                                                     com.sun.jmdk/jmxtools
                                                     com.sun.jmx/jmxri]]
                  ;; Make RSS/Atom feeds
-                 [clj-rss "0.2.7"]]
+                 ;[clj-rss "0.2.7"]
+                 ]
   :plugins [;; DEV TOOLS
             ;;; Check idiomatic bug
             [lein-kibit "0.1.7"]
             ;;; Check format
-            [lein-cljfmt "0.6.4"]]
+            [lein-cljfmt "0.6.4"]
+            [lein-shell "0.5.0"]]
   ;; ALIAS
   :aliases {"check-idiomatic" ["kibit" "src"]
             "check-format"    ["cljfmt" "check"]
-            "fix-format"    ["cljfmt" "fix"]}
+            "fix-format"    ["cljfmt" "fix"]
+            "native" ["shell" "native-image" "--report-unsupported-elements-at-runtime" "-jar" "./target/${:uberjar-name:-${:name}-${:version}-standalone.jar}" "-H:Name=./target/${:name}"]
+            }
 ;; LEIN
   :main ^:skip-aot rsspaper.core
   :aot  [rsspaper.core]
