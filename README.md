@@ -2,6 +2,12 @@
   <img alt="RSSpaper logo" src="media/newsreader-banner.png">
 </h1>
 
+Generate a static page with the latest news from your favorite feeds. Is it an RSS client? Yes, except that it generates an **HTML/PWA** that you can read or **install on your tablet or mobile** and to **update the news you must run it again**.
+
+## Screenshots
+
+![demo preview](media/demo.jpg)
+
 ## Demo
 
 <p align="center">
@@ -12,11 +18,6 @@
 
 ![demo preview](media/pagespeed-insights.png)
 
-## Screenshots
-
-![demo preview](media/demo.jpg)
-
-Generate a static page with the latest news from your favorite feeds. Is it an RSS client? Yes, except that it generates an **HTML/PWA** that you can read or **install on your tablet or mobile** and to **update the news you must run it again**.
 
 ## Run
 
