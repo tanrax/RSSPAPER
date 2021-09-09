@@ -1,9 +1,18 @@
 <h1 align="center">
   <img alt="RSSpaper logo" src="media/newsreader-banner.png">
 </h1>
+
+## Demo
+
 <p align="center">
-  <a href="https://rsspaper.andros.dev/">👉 DEMO 👈</a> (My own feed generated daily with Github Actions)
+  <a href="https://rsspaper.andros.dev/">👉 My own feed generated daily with Github Actions 👈</a>
 </p>
+
+## PageSpeed Insights
+
+![demo preview](media/pagespeed-insights.png)
+
+## Screenshots
 
 ![demo preview](media/demo.jpg)
 
