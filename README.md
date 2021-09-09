@@ -8,7 +8,7 @@
   <a href="https://rsspaper.andros.dev/">👉 My own feed generated daily with Github Actions 👈</a>
 </p>
 
-## PageSpeed Insights
+### PageSpeed Insights
 
 ![demo preview](media/pagespeed-insights.png)
 
