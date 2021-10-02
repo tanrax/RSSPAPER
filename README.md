@@ -6,7 +6,13 @@ Generate a static page with the latest news from your favorite feeds. Is it an R
 
 ## Screenshots
 
+### Light theme
+
 ![demo preview](media/demo.jpg)
+
+### Dark theme
+
+![demo preview](media/dark-mode.png)
 
 ## Demo
 
@@ -27,7 +33,7 @@ Generate a static page with the latest news from your favorite feeds. Is it an R
 # Change the title, it's for you. Maybe you see "My newspaper"?
 title: RSSPAPER
 
-# Options: light (Awaiting donations for new themes: 'dark' and 'sepia')
+# Options: light or dark (Awaiting donations for new themes: 'sepia')
 theme: light
 
 # Options: daily, weekly or all
@@ -56,7 +62,7 @@ That's it, now you just have to open `dist/index.html`.
 
 ## Donation target
 
-- **50+ euros**: Dark Theme.
+- **50+ euros**: Sepia theme.
 - **100+ euros**: RSS feed generation to be read by other clients.
 - **150+ euros**: Integrated web server and auto-compilation.
 - **200+ euros**: Documentation for creating new templates and custom themes.
