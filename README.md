@@ -10,6 +10,10 @@ Generate a static page with the latest news from your favorite feeds. Is it an R
 
 ![demo preview](media/demo.jpg)
 
+### Sepia theme
+
+![demo preview](media/sepia-mode.png)
+
 ### Dark theme
 
 ![demo preview](media/dark-mode.png)
@@ -33,7 +37,7 @@ Generate a static page with the latest news from your favorite feeds. Is it an R
 # Change the title, it's for you. Maybe you see "My newspaper"?
 title: RSSPAPER
 
-# Options: light or dark (Awaiting donations for new themes: 'sepia')
+# Options: light, sepia or dark
 theme: light
 
 # Options: daily, weekly or all
