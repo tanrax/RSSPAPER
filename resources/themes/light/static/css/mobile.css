@@ -1,13 +1,17 @@
+:root {
+  --height-img-mobile: 18rem;
+}
+
 .title {
-    font-size: 3rem
+  font-size: 3rem;
 }
 
 .subtitle {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .article__header-img > a > img {
-    height: initial;
-    object-position: initial;
-    object-fit: initial;
+  height: var(--height-img-mobile);
+  object-position: top;
+  object-fit: cover;
 }

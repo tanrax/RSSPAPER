@@ -1,8 +1,8 @@
-/* Global */
-@import "nord.css";
-
 :root {
   --height-img: 10rem;
+  --color__nord-dark: #2e3440;
+  --color__nord-light: #d8dee9;
+  --color__nord-medium: #5e81ac;
 }
 
 @font-face {
@@ -15,8 +15,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: Newsreader, serif;
-  color: var(--nord4);
-  background-color: var(--nord0);
+  color: var(--color__nord-light);
+  background-color: var(--color__nord-dark);
   background-size: 100%;
 }
 img {
@@ -29,7 +29,7 @@ iframe {
   width: 100%;
 }
 a {
-  color: var(--nord4);
+  color: var(--color__nord-light);
   text-decoration: none;
 }
 pre {
@@ -66,7 +66,7 @@ pre {
 }
 .separator {
   border: 0;
-  background: var(--nord4);
+  background: var(--color__nord-light);
   height: 1px;
 }
 .footer__text {
