@@ -4,6 +4,7 @@
     --color-gray: gray;
     --color-background: #f9f7f1;
     --height-img: 10rem;
+    --height-img-mobile: 12rem;
 }
 
 @font-face {

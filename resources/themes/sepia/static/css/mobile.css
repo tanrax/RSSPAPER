@@ -7,7 +7,7 @@
 }
 
 .article__header-img > a > img {
-    height: initial;
-    object-position: initial;
-    object-fit: initial;
+    height: var(--height-img-mobile);
+    object-position: top;
+    object-fit: cover;
 }

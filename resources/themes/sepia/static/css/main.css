@@ -5,6 +5,7 @@
     --color-white: #fcead5;
     --color-background: #e5d5c2;
     --height-img: 10rem;
+    --height-img-mobile: 12rem;
 }
 
 @font-face {
