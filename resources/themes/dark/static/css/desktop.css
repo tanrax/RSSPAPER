@@ -30,7 +30,7 @@
 
 .article__date {
   font-size: 0.9rem;
-  color: var(--nord10);
+  color: var(--color__nord-medium);
 }
 
 .feed__article:nth-child(1) .article__title {

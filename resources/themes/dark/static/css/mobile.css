@@ -1,3 +1,7 @@
+:root {
+  --height-img-mobile: 18rem;
+}
+
 .title {
   font-size: 3rem;
 }
@@ -7,7 +11,12 @@
 }
 
 .article__header-img > a > img {
-  height: 18rem;
+  height: var(--height-img-mobile);
   object-position: top;
   object-fit: cover;
+}
+
+.article__date {
+  font-size: 0.9rem;
+  color: var(--color__nord-medium);
 }
