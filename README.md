@@ -21,7 +21,7 @@ Generate a static page with the latest news from your favorite feeds. Is it an R
 ## Demo
 
 <p align="center">
-  <a href="https://rsspaper.andros.dev/">👉 My own feed generated daily with Github Actions 👈</a>
+  <a href="https://tanrax.github.io/demo-RSSPAPER/">👉 Generated weekly with Github Actions 👈</a>
 </p>
 
 ### PageSpeed Insights
