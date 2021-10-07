@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := build
 
 build: ## Check style with black
-	build.templates
+	make build.templates
 	lein uberjar
 	make rm.statics
 
