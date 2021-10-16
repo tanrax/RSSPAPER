@@ -63,3 +63,21 @@ java -jar rsspaper-{version}-standalone.jar
 Great 🎉. You already have your 📰 own Static RSS Newspaper 📰.
 
 That's it, now you just have to open `dist/index.html`.
+
+## Dev
+
+### Build
+
+```sh
+make build
+```
+
+### Run
+
+```sh
+lein run
+```
+
+### Make new theme
+
+You can copy any theme hosted on `resources/themes`.

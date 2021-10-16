@@ -1,7 +1,7 @@
 {
   "name": "RSSPAPER",
   "short_name": "RSSPAPER",
-  "theme_color": "#ffffff",
+  "theme_color": "#5e81ac",
   "icons": [
     {
       "src": "manifest-icon-192.png",
@@ -18,5 +18,5 @@
   ],
   "start_url": "..",
   "display": "standalone",
-  "background_color": "#ffffff"
+  "background_color": "#5e81ac"
 }
