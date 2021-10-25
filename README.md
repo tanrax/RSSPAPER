@@ -37,7 +37,7 @@ Generate a static page with the latest news from your favorite feeds. Is it an R
 # Change the title, it's for you. Maybe you see "My newspaper"?
 title: RSSPAPER
 
-# Options: light, sepia or dark
+# Options: light, dark, sepia or clojure 
 theme: light
 
 # Options: daily, weekly or all

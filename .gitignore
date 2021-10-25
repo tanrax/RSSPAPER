@@ -5,3 +5,4 @@ target/
 config.yaml
 log/logger1.log*
 *.jar
+resources/*.tar

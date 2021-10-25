@@ -15,12 +15,12 @@
 (defn make-html
   [articles]
   ;; Render html in dist/index.html
-  (let [dir-dist "dist/"
-        path-theme (io/resource (str "themes/" (:theme config) "/"))
-        file-index "index.html"
+  (let [dir-dist        "dist/"
+        path-theme      (io/resource (str "themes/" (:theme config) "/"))
+        file-index      "index.html"
         path-dist-index (str dir-dist "index.html")
-        zip-static "static.zip"
-        tmp-static (str (fs/tmpdir) "/rsspaper.zip")]
+        tar-static      "static.tar"
+        tmp-static      (str (fs/tmpdir) "/rsspaper.tar")]
     ;; Remove old index.html
     (when (.exists (io/file path-dist-index)) (io/delete-file path-dist-index))
     ;; Make dir dist
@@ -28,8 +28,8 @@
     ;; Make dist/index.html
     (selmer.parser/set-resource-path! path-theme)
     (with-open [writer (io/writer path-dist-index)]
-      (.write writer (s/render-file file-index {:title (:title config)
+      (.write writer (s/render-file file-index {:title    (:title config)
                                                 :articles (get-articles)})))
     ;; Make static
-    (copy-uri-to-file (str path-theme zip-static) tmp-static)
-    (fsc/unzip tmp-static dir-dist)))
+    (copy-uri-to-file (str path-theme tar-static) tmp-static)
+    (fsc/untar tmp-static dir-dist)))
