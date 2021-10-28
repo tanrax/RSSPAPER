@@ -33,13 +33,17 @@
   ;; Flat all articles
   (reduce (fn [articles feed]
             ;; Add in every article, all information from feed
-            (concat articles (map (fn [article] (assoc article :feed (:feed (update-in feed [:feed] dissoc :entries)))) (get-in feed [:feed :entries])))) [] feeds))
+            (concat articles (map (fn [article] (assoc
+                                                  ;; Add feed-url
+                                                  (assoc article :feed
+                                                         ;; Add feed
+                                                         (:feed (update-in feed [:feed] dissoc :entries))) :feed-url (:feed-url feed))) (get-in feed [:feed :entries])))) [] feeds))
 
 
 (defn add-domain-to-relative-path
   [url-complete url-relative]
   ;; Converts a relative path to a path with its domain.
-  ;; /foo/boo/ -> example.com/foo/boo/
+  ;; /foo/boo/ -> http://example.com/foo/boo/
   (let [is-relative     (= (str (first url-relative)) "/")
         url-elements    (re-find #"(.+\/\/|www.)(.*?)\/.+" url-complete)
         url-with-domain (if is-relative (str (get url-elements 1) (get url-elements 2) url-relative) url-relative)]
@@ -52,7 +56,7 @@
   ;; Iterate every blog
   (map (fn [article]
                                         ; User feedback
-         (prn (str  "Looking for cover image for article > " (:feed-url article)))
+         (prn (str  "Looking for cover image for article > " (add-domain-to-relative-path (:feed-url article) (:link article))))
                                         ; Search cover image
          (let [url-article     (add-domain-to-relative-path (:feed-url article) (:link article))
                html            (:body (client/get url-article {:insecure? true :throw-exceptions false}))
@@ -60,7 +64,7 @@
                url-first-image (second (re-find #"<main.*>[\s\S]+<img[^>]+src=\"([^\">]+)\"|id=['\"] ?main ?['\"]>[\s\S]+<img[^>]+src=\"([^\">]+)\"|class=['\"] ?main ?[\'\"]>[\s\S]+<img[^>]+src=\"([^\">]+)\"" html))
                images          [url-og-image url-first-image]
                url-valid       (first (filter (fn [item] (not (nil? item))) images))
-               url-final-image (add-domain-to-relative-path url-article url-valid)]
+               url-final-image (add-domain-to-relative-path (:feed-url article) url-valid)]
            (assoc article :cover url-final-image))) articles))
 
 (defn order-published
