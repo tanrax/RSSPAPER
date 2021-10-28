@@ -35,20 +35,32 @@
             ;; Add in every article, all information from feed
             (concat articles (map (fn [article] (assoc article :feed (:feed (update-in feed [:feed] dissoc :entries)))) (get-in feed [:feed :entries])))) [] feeds))
 
+
+(defn add-domain-to-relative-path
+  [url-complete url-relative]
+  ;; Converts a relative path to a path with its domain.
+  ;; /foo/boo/ -> example.com/foo/boo/
+  (let [is-relative     (= (str (first url-relative)) "/")
+        url-elements    (re-find #"(.+\/\/|www.)(.*?)\/.+" url-complete)
+        url-with-domain (if is-relative (str (get url-elements 1) (get url-elements 2) url-relative) url-relative)]
+    url-with-domain))
+
+
 (defn add-cover-article
   [articles]
   ;; Add cover to article search first image in description
   ;; Iterate every blog
   (map (fn [article]
                                         ; User feedback
-         (prn (str  "Looking for cover image for article > " (:link article)))
+         (prn (str  "Looking for cover image for article > " (:feed-url article)))
                                         ; Search cover image
-         (let [url-article     (:link article)
+         (let [url-article     (add-domain-to-relative-path (:feed-url article) (:link article))
                html            (:body (client/get url-article {:insecure? true :throw-exceptions false}))
                url-og-image    (second (re-find #"<meta[^>].*?property=\"og:image(?::url)?\".*?content=\"(.*?)\".*?>|<meta[^>].*?content=\"(.*?)\".*?property=\"og:image(?::url)?\".*?>" html))
                url-first-image (second (re-find #"<main.*>[\s\S]+<img[^>]+src=\"([^\">]+)\"|id=['\"] ?main ?['\"]>[\s\S]+<img[^>]+src=\"([^\">]+)\"|class=['\"] ?main ?[\'\"]>[\s\S]+<img[^>]+src=\"([^\">]+)\"" html))
                images          [url-og-image url-first-image]
-               url-final-image (first (filter (fn [item] (not (nil? item))) images))]
+               url-valid       (first (filter (fn [item] (not (nil? item))) images))
+               url-final-image (add-domain-to-relative-path url-article url-valid)]
            (assoc article :cover url-final-image))) articles))
 
 (defn order-published
@@ -60,22 +72,22 @@
   []
   ;; Get all feeds from config -> feeds
   (->
-   (reduce
-    (fn [feeds feed-url]
-       ; Read feed
-      (let [feed (parse-url feed-url {:insecure? true :throw-exceptions false})]
-        ; User feedback
-        (prn (str  "Reading RSS > " feed-url))
-         ; Check is not null
-        (if-not (nil? feed)
-           ; Add feed
-          (conj feeds feed)
-           ; Alert fail
-          (prn (str "Error with '" feed-url) "'"))))
-    [] (:feeds config))
-   zip-feeds-in-articles
-   datetimes-to-unixtime
-   filter-edition
-   order-published
-   add-cover-article
-   add-datetimes-formatter))
+    (reduce
+      (fn [feeds feed-url]
+                                        ; Read feed
+        (let [feed (parse-url feed-url {:insecure? true :throw-exceptions false})]
+                                        ; User feedback
+          (prn (str  "Reading RSS > " feed-url))
+                                        ; Check is not null
+          (if-not (nil? feed)
+                                        ; Add feed and add key feed original
+            (conj feeds (assoc feed :feed-url feed-url))
+                                        ; Alert fail
+            (prn (str "Error with '" feed-url) "'"))))
+      [] (:feeds config))
+    zip-feeds-in-articles
+    datetimes-to-unixtime
+    filter-edition
+    order-published
+    add-cover-article
+    add-datetimes-formatter))
