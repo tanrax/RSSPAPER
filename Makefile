@@ -3,7 +3,6 @@
 build:
 	make build.templates
 	lein uberjar
-	make rm.statics
 	echo "Finish!"
 
 build.templates:

@@ -6,3 +6,7 @@ config.yaml
 log/logger1.log*
 *.jar
 resources/*.tar
+resources/themes/clojure/static.tar
+resources/themes/dark/static.tar
+resources/themes/light/static.tar
+resources/themes/sepia/static.tar

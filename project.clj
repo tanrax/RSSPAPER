@@ -1,4 +1,4 @@
-(defproject rsspaper "1.2.1"
+(defproject rsspaper "1.2.2"
   :description "RSSpaper"
   :url "https://github.com/tanrax/RSSpaper"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
