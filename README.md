@@ -84,9 +84,9 @@ You can copy any theme hosted on `resources/themes`.
 
 ## TODO
 
-- [] Create a binary with GraamVM 
-- [] Generate feed
-- [] Migrate from lein to clojure cli
-- [] Add Podcast player
-- [] Save cache offline
-- [] Show preview of articles
+- [ ] Create a binary with GraamVM 
+- [ ] Generate feed
+- [ ] Migrate from lein to clojure cli
+- [ ] Add Podcast player
+- [ ] Save cache offline
+- [ ] Show preview of articles
