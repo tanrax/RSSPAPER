@@ -80,16 +80,23 @@
   (->
    (reduce
     (fn [feeds feed-url]
-                                        ; Read feed
-      (let [feed (parse-url feed-url {:insecure? true :throw-exceptions false})]
-                                        ; User feedback
-        (prn (str  "Reading RSS > " feed-url))
-                                        ; Check is not null
-        (if-not (nil? feed)
-                                        ; Add feed and add key feed original
-          (conj feeds (assoc feed :feed-url feed-url))
-                                        ; Alert fail
-          (prn (str "Error with '" feed-url) "'"))))
+	    (try 
+	                                        ; Read feed
+	      (let [feed (parse-url feed-url {:insecure? true})]
+	                                        ; User feedback
+	        (prn (str  "Reading RSS > " feed-url))
+	                                        ; Check is not null
+	        (if-not (nil? feed)
+	                                        ; Add feed and add key feed original
+	          (conj feeds (assoc feed :feed-url feed-url))
+	                                        ; Alert fail
+	          (prn (str "Error with '" feed-url) "'")))
+			 	(catch clojure.lang.ExceptionInfo e
+			    (let [response (ex-data e)
+			          {:keys [status headers]} response]
+			      (prn (str feed-url " has been ignored because of bad formatting."))
+			      ;; do anything you want
+			      ))))
     [] (:feeds config))
    zip-feeds-in-articles
    datetimes-to-unixtime
