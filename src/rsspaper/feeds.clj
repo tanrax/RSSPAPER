@@ -91,12 +91,9 @@
 	          (conj feeds (assoc feed :feed-url feed-url))
 	                                        ; Alert fail
 	          (prn (str "Error with '" feed-url) "'")))
-			 	(catch clojure.lang.ExceptionInfo e
-			    (let [response (ex-data e)
-			          {:keys [status headers]} response]
+			 	(catch Throwable e
 			      (prn (str feed-url " has been ignored because of bad formatting."))
-			      ;; do anything you want
-			      ))))
+			    )))
     [] (:feeds config))
    zip-feeds-in-articles
    datetimes-to-unixtime
